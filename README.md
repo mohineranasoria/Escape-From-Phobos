@@ -17,12 +17,12 @@ Two consecutive evaluation runs were conducted using this identical codebase, me
 
 | Metric | Run 1 | Run 2 | **Average / Combined** |
 |---|:---:|:---:|:---:|
-| **Score** | **49.7** | **48.8** | **49.3** (49.25) |
-| **Sim Elapsed Time (SET)** | $219.21\text{ s}$ | $219.68\text{ s}$ | **$219.45\text{ s}$** |
-| **Total Fuel Used** | $41.26\text{ kg}$ | $41.87\text{ kg}$ | **$41.57\text{ kg}$** |
+| **Score** | **48.8** | **48.7** | **48.8** (48.75) |
+| **Sim Elapsed Time (SET)** | $220.12\text{ s}$ | $219.67\text{ s}$ | **$219.90\text{ s}$** |
+| **Total Fuel Used** | $41.79\text{ kg}$ | $41.98\text{ kg}$ | **$41.89\text{ kg}$** |
 | **Total Damage Taken** | $0.0\text{ J}$ | $0.0\text{ J}$ | **$0.0\text{ J}$ (Zero Collisions)** |
-| **Final Distance to Ship** | $49.57\text{ m}$ | $49.60\text{ m}$ | **Within Keep-Out ($\le 50\text{ m}$)** |
-| **Run UUID** | `5e48146f-427f-ac85-aa39-4bb4d8fd385c` | `cbb437f6-47af-3929-5489-aea7092169a9` | Verified |
+| **Final Distance to Ship** | $49.62\text{ m}$ | $49.81\text{ m}$ | **Within Keep-Out ($\le 50\text{ m}$)** |
+| **Run UUID** | `e6443ff1-48df-aa02-bde8-a9872c680bc4` | `86167709-4290-d382-6867-b282f2246387` | Verified |
 
 ---
 
