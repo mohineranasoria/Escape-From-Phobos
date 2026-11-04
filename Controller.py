@@ -61,18 +61,18 @@ def SetCommand(accelCommand: npt.NDArray, angAccelCommand: npt.NDArray) -> None:
 
 
 # ==============================================================================
-# USER CONTROLLER CODE: DEAD-RECKONED CRASH-PROOF RADAR & TERMINAL BALLISTIC COAST
+# USER CONTROLLER CODE: NOSE-ALIGNED PITCH SLEW, HIGH-EFFICIENCY +X BURN & COAST
 # ==============================================================================
 
 # --- 1. Mission & Tuning Constants ---
-V_CRUISE = 7.85           # Calibrated cruise speed for Score >= 55 (m/s) -> ~39.9kg fuel, ~205s transit
+V_CRUISE = 7.85           # Calibrated cruise speed for maximum score (m/s)
 MAX_ACCEL = 2.15          # LP Simplex solver saturation ceiling (m/s^2)
 KEEP_OUT_CUTOFF = 49.5    # Cutoff distance (m) - victory triggers at <= 50.0m
 TERMINAL_COAST_DIST = 160.0 # Distance inside which forward burn is permanently locked off
 
 # Speed & Coasting Calibration
 DEADBAND_ENTER = 0.15     # Enter ballistic coast when speed reaches 7.70 m/s
-LAT_DRIFT_MAX = 2.80      # Initial climb heading tolerance (m/s)
+LAT_DRIFT_MAX = 2.80      # Heading tolerance during climb (m/s)
 
 KP_VEL_LONG = 1.25        # Forward velocity proportional gain (1/s)
 KP_VEL_LAT = 1.45         # Lateral evasion velocity proportional gain (1/s)
@@ -85,7 +85,14 @@ TCA_HORIZON = 9.5         # Lookahead time horizon for collision cone (seconds)
 MAX_EVADE_VEL = 5.2       # Maximum lateral dodge velocity component (m/s)
 EVADE_FILTER_ALPHA = 0.45 # EMA smoothing factor for feed-forward acceleration
 
-# Keep cameras facing forward
+# Attitude Slew Profile (Pitch Body +X to align with Goal Direction)
+SLEW_ANG_MAX_ACCEL = 0.045  # Maximum angular acceleration for slew (rad/s^2, limit 0.05)
+SLEW_ANG_DECEL = 0.035      # Braking deceleration curve (rad/s^2)
+SLEW_CRUISE_RATE = 0.18     # Slew angular velocity limit (~10.3 deg/s)
+SLEW_ALIGN_TOL_DEG = 2.0    # Alignment completion threshold (degrees)
+SLEW_MAX_TIME_SEC = 18.0    # Timeout before transitioning to forward burn (seconds)
+
+# Keep cameras facing forward along body +X
 PanTiltCamera(topCamera, 0.0, 0.0)
 PanTiltCamera(bottomCamera, 0.0, 0.0)
 
@@ -95,6 +102,8 @@ t0_sim = st.SimGlobals.SimClock.GetTimeNow().as_datetime()
 smooth_evade_acc = np.zeros(3)
 long_coasting = False
 coasting = False
+is_aligned = False
+ref_body_y = None
 iteration = 0
 exit_flag: bool = False
 
@@ -109,7 +118,8 @@ while not exit_flag:
     locVelAcc = shuttle.getLocVelAcc()
     loc = np.array(locVelAcc.loc_WRT_ExprIn(phobosFrame), dtype=float)
     vel = np.array(locVelAcc.vel_WRT_ExprIn(phobosFrame), dtype=float)
-    rot = np.array(shuttle.getRotation().Quat_WRT(phobosFrame), dtype=float)
+    rot_dcm = np.array(shuttle.getRotation().DCM_WRT(phobosFrame), dtype=float)
+    ang_vel_body = np.array(shuttle.getAngVelocity().WRT(phobosFrame).ExprIn(shuttleFrame), dtype=float)
 
     damage: float = shuttle.GetParam(st.VarType.double, ["Stats", "Damage"])
     fuelUsed: float = shuttle.GetParam(st.VarType.double, ["Stats", "FuelUsed"])
@@ -141,7 +151,53 @@ while not exit_flag:
     v_lat_vec = vel - v_long_vec
     v_lat_mag = float(np.linalg.norm(v_lat_vec))
 
-    # --- 4. Dead-Reckoned Crash-Proof TCA Collision Cone & Proximity Repulsion ---
+    # --- 4. Attitude Control: Nose-Aligned Pitch Slew & Deadband Hold ---
+    if ref_body_y is None:
+        ref_body_y = copy.deepcopy(rot_dcm[1, :])
+
+    # Target body orientation: +X pointing at u_goal, aligned with initial body Y reference
+    x_des = u_goal
+    z_des = np.cross(x_des, ref_body_y)
+    z_norm = np.linalg.norm(z_des)
+    if z_norm < 1e-4:
+        ref_alt = np.array([0.0, 1.0, 0.0]) if abs(x_des[1]) < 0.9 else np.array([1.0, 0.0, 0.0])
+        z_des = np.cross(x_des, ref_alt)
+        z_norm = np.linalg.norm(z_des)
+    z_des /= z_norm
+    y_des = np.cross(z_des, x_des)
+
+    R_des = np.vstack((x_des, y_des, z_des))
+    R_err = R_des @ rot_dcm.T
+
+    tr = np.trace(R_err)
+    angle_err_rad = float(np.arccos(np.clip((tr - 1.0) / 2.0, -1.0, 1.0)))
+    angle_err_deg = float(np.rad2deg(angle_err_rad))
+
+    if abs(np.sin(angle_err_rad)) > 1e-5 and angle_err_rad > 1e-4:
+        rot_axis = (0.5 / np.sin(angle_err_rad)) * np.array([
+            R_err[2, 1] - R_err[1, 2],
+            R_err[0, 2] - R_err[2, 0],
+            R_err[1, 0] - R_err[0, 1]
+        ])
+        rot_axis_norm = np.linalg.norm(rot_axis)
+        if rot_axis_norm > 1e-6:
+            rot_axis /= rot_axis_norm
+        theta_err_body = angle_err_rad * rot_axis
+    else:
+        theta_err_body = np.zeros(3)
+
+    ang_speed = float(np.linalg.norm(ang_vel_body))
+
+    # Check if initial pitch slew has completed
+    if not is_aligned:
+        if (angle_err_deg < SLEW_ALIGN_TOL_DEG and ang_speed < np.deg2rad(0.8)) or sim_time_sec > SLEW_MAX_TIME_SEC:
+            is_aligned = True
+            st.OnScreenLogMessage(
+                f"PITCH COMPLETE at t={sim_time_sec:.1f}s (Error: {angle_err_deg:.1f}deg). Starting Forward +X Burn!",
+                "PitchSlew", st.Severity.Info
+            )
+
+    # --- 5. Collision Avoidance Geometry (Always Active) ---
     v_evade_lat_des = np.zeros(3)
     a_evade_ff = np.zeros(3)
     max_threat_urgency = 0.0
@@ -155,7 +211,7 @@ while not exit_flag:
             debris_rad = 0.5 * max(debris_diam, 1.0)
             t_sample = float(item[2, 0])
 
-            # Dead-reckon rock position across the radar refresh cycle (only when sample timestamp is valid)
+            # Dead-reckon rock position across radar refresh latency
             dt_stale = float(np.clip(sim_time_sec - t_sample, 0.0, 8.5)) if t_sample > 0.0 else 0.0
             rel_pos = rel_pos_raw - vel * dt_stale
 
@@ -170,7 +226,7 @@ while not exit_flag:
 
             r_safe = debris_rad + SHIP_BOUND_RADIUS + CLEARANCE_BUFFER
 
-            # Case A: Emergency Proximity Repulsion (Point-blank physical threat < 4.0m surface clearance)
+            # Emergency Proximity Repulsion
             if surf_dist < (SHIP_BOUND_RADIUS + 1.0) and range_rate < -0.5:
                 lat_offset = rel_pos - forward_proj * u_goal
                 lat_dist = float(np.linalg.norm(lat_offset))
@@ -185,7 +241,7 @@ while not exit_flag:
                 max_threat_urgency = max(max_threat_urgency, prox_urg)
                 continue
 
-            # Case B: Predictive TCA Collision Cone
+            # Predictive TCA Collision Cone
             if range_rate >= -0.35:
                 continue
 
@@ -198,7 +254,6 @@ while not exit_flag:
             if tca < 0.0 or tca > TCA_HORIZON:
                 continue
 
-            # Velocity-orthogonal miss vector (strictly orthogonal to velocity)
             miss_vec = rel_pos - vel * tca
             miss_dist = float(np.linalg.norm(miss_vec))
 
@@ -207,7 +262,6 @@ while not exit_flag:
                 time_weight = np.clip((TCA_HORIZON - tca) / TCA_HORIZON, 0.15, 1.0)
                 urgency = (penetration ** 1.3) * (time_weight ** 1.2)
 
-                # Pure lateral evasion strictly perpendicular to travel direction
                 if miss_dist > 0.3:
                     escape_dir = -miss_vec / miss_dist
                 else:
@@ -229,73 +283,90 @@ while not exit_flag:
         + (1.0 - EVADE_FILTER_ALPHA) * smooth_evade_acc
     )
 
-    # --- 5. Decoupled Guidance Law & Zero-Fuel Coasting ---
-    if dist_to_target <= KEEP_OUT_CUTOFF:
-        accel_phobos = np.zeros(3)
-        coasting = True
+    # --- 6. Guidance Execution (Phase-Dependent) ---
+    if not is_aligned:
+        # Phase 1: Zero Linear Burn, Full Angular Slew Authority
+        v_stop = np.sqrt(max(0.0, 2.0 * SLEW_ANG_DECEL * angle_err_rad))
+        target_rate = min(SLEW_CRUISE_RATE, v_stop)
+        omega_target = (theta_err_body / angle_err_rad) * target_rate if angle_err_rad > 1e-4 else np.zeros(3)
+
+        alpha_cmd = 2.0 * (omega_target - ang_vel_body)
+        alpha_cmd_mag = float(np.linalg.norm(alpha_cmd))
+        if alpha_cmd_mag > SLEW_ANG_MAX_ACCEL:
+            alpha_cmd = (alpha_cmd / alpha_cmd_mag) * SLEW_ANG_MAX_ACCEL
+
+        linearAccel_body = np.zeros(3, dtype=float)
+        angularAccel_body = alpha_cmd
+        coasting = False
+
     else:
-        # One-Way Ballistic Coast Lock:
-        # Accelerate to 7.70 m/s during initial climb, then lock coasting ON permanently.
-        # Saves fuel by eliminating mid-flight re-ignitions; momentum carries ship to goal.
-        if speed >= (V_CRUISE - DEADBAND_ENTER):
-            long_coasting = True
-
-        if not long_coasting:
-            v_err_long = max(0.0, V_CRUISE - v_long_mag)
-            a_cmd_long = KP_VEL_LONG * v_err_long * u_goal
-            long_thrusting = True
-        else:
-            a_cmd_long = np.zeros(3)
-            long_thrusting = False
-
-        # Lateral Evasion: NEVER SUPPRESS REAL EVASION!
-        # Always react with full authority when max_threat_urgency > 0.035
-        if max_threat_urgency > 0.035:
-            v_err_lat = v_evade_lat_des - v_lat_vec
-            a_cmd_lat = KP_VEL_LAT * v_err_lat + smooth_evade_acc
-            lat_thrusting = True
-        elif not long_coasting and v_lat_mag > LAT_DRIFT_MAX:
-            # Only hold lateral heading during initial climb; zero fuel chatter in coast
-            a_cmd_lat = -0.30 * v_lat_vec
-            lat_thrusting = True
-        else:
-            a_cmd_lat = np.zeros(3)
-            lat_thrusting = False
-
-        coasting = not (long_thrusting or lat_thrusting)
-
-        # Acceleration Allocation: Evasion always gets top priority
-        if coasting:
+        # Phase 2 & 3: Forward +X Burn and Ballistic Coast
+        if dist_to_target <= KEEP_OUT_CUTOFF:
             accel_phobos = np.zeros(3)
+            coasting = True
         else:
-            a_lat_mag = float(np.linalg.norm(a_cmd_lat))
-            if a_lat_mag >= MAX_ACCEL:
-                accel_phobos = (a_cmd_lat / a_lat_mag) * MAX_ACCEL
+            if speed >= (V_CRUISE - DEADBAND_ENTER):
+                long_coasting = True
+
+            if not long_coasting:
+                v_err_long = max(0.0, V_CRUISE - v_long_mag)
+                a_cmd_long = KP_VEL_LONG * v_err_long * u_goal
+                long_thrusting = True
             else:
-                max_long_avail = np.sqrt(max(0.0, MAX_ACCEL**2 - a_lat_mag**2))
-                a_long_mag = float(np.linalg.norm(a_cmd_long))
-                if a_long_mag > max_long_avail and a_long_mag > 1e-6:
-                    a_cmd_long = (a_cmd_long / a_long_mag) * max_long_avail
-                accel_phobos = a_cmd_long + a_cmd_lat
+                a_cmd_long = np.zeros(3)
+                long_thrusting = False
 
-    accel_norm = float(np.linalg.norm(accel_phobos))
-    if accel_norm > MAX_ACCEL:
-        accel_phobos = (accel_phobos / accel_norm) * MAX_ACCEL
+            if max_threat_urgency > 0.035:
+                v_err_lat = v_evade_lat_des - v_lat_vec
+                a_cmd_lat = KP_VEL_LAT * v_err_lat + smooth_evade_acc
+                lat_thrusting = True
+            elif not long_coasting and v_lat_mag > LAT_DRIFT_MAX:
+                a_cmd_lat = -0.30 * v_lat_vec
+                lat_thrusting = True
+            else:
+                a_cmd_lat = np.zeros(3)
+                lat_thrusting = False
 
-    # --- 6. Body Frame Transformation & Zero-Torque Actuation ---
-    linearAccel_body = np.array(
-        st.frames.FramedVector(accel_phobos, phobosFrame).ExprIn(shuttleFrame),
-        dtype=float
-    )
+            coasting = not (long_thrusting or lat_thrusting)
 
-    # Strictly zero angular acceleration to prevent rotational fuel burn
-    angularAccel_body = np.zeros(3, dtype=float)
+            if coasting:
+                accel_phobos = np.zeros(3)
+            else:
+                a_lat_mag = float(np.linalg.norm(a_cmd_lat))
+                if a_lat_mag >= MAX_ACCEL:
+                    accel_phobos = (a_cmd_lat / a_lat_mag) * MAX_ACCEL
+                else:
+                    max_long_avail = np.sqrt(max(0.0, MAX_ACCEL**2 - a_lat_mag**2))
+                    a_long_mag = float(np.linalg.norm(a_cmd_long))
+                    if a_long_mag > max_long_avail and a_long_mag > 1e-6:
+                        a_cmd_long = (a_cmd_long / a_long_mag) * max_long_avail
+                    accel_phobos = a_cmd_long + a_cmd_lat
+
+        accel_norm = float(np.linalg.norm(accel_phobos))
+        if accel_norm > MAX_ACCEL:
+            accel_phobos = (accel_phobos / accel_norm) * MAX_ACCEL
+
+        linearAccel_body = np.array(
+            st.frames.FramedVector(accel_phobos, phobosFrame).ExprIn(shuttleFrame),
+            dtype=float
+        )
+
+        # Attitude Hold: Tight deadband to prevent fuel chatter
+        if angle_err_deg < 3.5 and ang_speed < np.deg2rad(1.0):
+            angularAccel_body = np.zeros(3, dtype=float)
+        else:
+            alpha_cmd = 0.10 * theta_err_body - 0.50 * ang_vel_body
+            alpha_cmd_mag = float(np.linalg.norm(alpha_cmd))
+            if alpha_cmd_mag > 0.015:
+                alpha_cmd = (alpha_cmd / alpha_cmd_mag) * 0.015
+            angularAccel_body = alpha_cmd
 
     SetCommand(linearAccel_body, angularAccel_body)
 
     if iteration % 10 == 0:
+        hud_phase = "SLEW" if not is_aligned else ("COAST" if coasting else "BURN")
         st.OnScreenLogMessage(
-            f"Dist: {dist_to_target:.1f}m | Spd: {speed:.1f}m/s | Dam: {damage:.1f}J | Fuel: {fuelUsed:.1f}kg | Coast: {coasting}",
+            f"[{hud_phase}] Dist: {dist_to_target:.1f}m | Spd: {speed:.1f}m/s | PitchErr: {angle_err_deg:.1f}deg | Fuel: {fuelUsed:.1f}kg",
             "FlightHUD", st.Severity.Info
         )
 
