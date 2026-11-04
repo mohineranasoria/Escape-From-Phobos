@@ -46,8 +46,11 @@ Two consecutive evaluation runs were conducted using this identical codebase, me
 ## 📁 Repository Structure
 ```
 Escape-From-Phobos/
-├── Controller.py          # Complete autonomous flight controller script
+├── Controller.py          # Complete autonomous flight controller script (Team Stella)
+├── BasicController.py     # Baseline reference controller
+├── UserAPI.py             # SpaceTeams API reference utilities and examples
 ├── README.md              # Project documentation and performance benchmarks
+├── .gitattributes         # Git LFS & line ending attributes
 └── .gitignore             # Standard Python / simulation gitignore
 ```
 
