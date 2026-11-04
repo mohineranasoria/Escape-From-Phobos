@@ -78,11 +78,11 @@ KP_VEL_LONG = 1.25        # Forward velocity proportional gain (1/s)
 KP_VEL_LAT = 1.45         # Lateral evasion velocity proportional gain (1/s)
 
 # Proven Crash-Proof Geometry with Dead-Reckoning Compensation
-RADAR_QUERY_COUNT = 80    # Scan 80 nearest rocks to overcome radar sort latency
+RADAR_QUERY_COUNT = 60    # Scan 60 nearest rocks to overcome radar sort latency
 SHIP_BOUND_RADIUS = 3.0   # Shuttle bounding radius (m)
-CLEARANCE_BUFFER = 4.5    # Safety standoff distance (m) -> R_safe = r_rock + 7.5m (guards against 2m radar 1-sigma noise)
-TCA_HORIZON = 10.0        # Lookahead time horizon for collision cone (seconds)
-MAX_EVADE_VEL = 1.6       # Controlled lateral dodge velocity ceiling (m/s) to prevent overshooting into secondary debris
+CLEARANCE_BUFFER = 2.0    # Safety standoff distance (m) -> R_safe = r_rock + 5.0m
+TCA_HORIZON = 9.5         # Lookahead time horizon for collision cone (seconds)
+MAX_EVADE_VEL = 5.2       # Maximum lateral dodge velocity component (m/s)
 EVADE_FILTER_ALPHA = 0.45 # EMA smoothing factor for feed-forward acceleration
 
 # Keep cameras facing forward
@@ -155,8 +155,8 @@ while not exit_flag:
             debris_rad = 0.5 * max(debris_diam, 1.0)
             t_sample = float(item[2, 0])
 
-            # Dead-reckon rock position across the radar refresh cycle
-            dt_stale = float(np.clip(sim_time_sec - t_sample, 0.0, 5.0)) if t_sample > 0.0 else float(np.clip(sim_time_sec, 0.0, 5.0))
+            # Dead-reckon rock position across the radar refresh cycle (only when sample timestamp is valid)
+            dt_stale = float(np.clip(sim_time_sec - t_sample, 0.0, 8.5)) if t_sample > 0.0 else 0.0
             rel_pos = rel_pos_raw - vel * dt_stale
 
             com_dist = float(np.linalg.norm(rel_pos))
@@ -249,8 +249,8 @@ while not exit_flag:
             long_thrusting = False
 
         # Lateral Evasion: NEVER SUPPRESS REAL EVASION!
-        # Always react with full authority when max_threat_urgency > 0.015
-        if max_threat_urgency > 0.015:
+        # Always react with full authority when max_threat_urgency > 0.035
+        if max_threat_urgency > 0.035:
             v_err_lat = v_evade_lat_des - v_lat_vec
             a_cmd_lat = KP_VEL_LAT * v_err_lat + smooth_evade_acc
             lat_thrusting = True
