@@ -62,29 +62,31 @@ def SetCommand(accelCommand: npt.NDArray, angAccelCommand: npt.NDArray) -> None:
 from collections import deque
 
 # ==============================================================================
-# HIGH-SCORE LYAPUNOV MULTI-VERTEX GNC CONTROLLER (60+ SCORE / ZERO-DAMAGE)
+# ULTRA-STABLE HIGH-SCORE LYAPUNOV MULTI-VERTEX GNC CONTROLLER (V10)
 # ==============================================================================
-# Key Physics Innovations for SpaceBuggy (Mass=3388.7kg, Isp=80s, 38 RCS jets):
+# Key Physics & Stability Innovations for SpaceBuggy (Mass=3388.7kg, Isp=80s, 38 RCS jets):
 # 1. Lyapunov Multi-Vertex Pure-Axis Allocator:
 #    Unlocks 100.0%-L1-efficiency 4-jet simplex vertices on +Z, +X, -X, -Y, -Z
 #    (0.1929 m/s^2 — 2.01x default +Z thrust!) and 3-jet vertices on +Y (0.1447 m/s^2),
 #    while closed-loop feedback on measured ang_vel_body cancels net torque to ~0
 #    AND steers the 5.2 deg gravity-compensated launch aim for 0.00 kg extra fuel
 #    and 0.0 s dead time (upright, glass-smooth flight, maxW < 0.03 rad/s).
-# 2. Multi-Sweep 500-Rock Moving-Debris Tracker + Non-Destructive Bounce Guard:
-#    Tracks position + velocity (gravity-compensated 7-sweep WLS + range-rate fusion)
-#    across SpaceCRAFT's 4.17s round-robin radar sweep, plus a parallel non-destructive
-#    post-bounce shadow hypothesis and speed-proportional Chaos standoff for monster
-#    boulders (R >= 17.8 m, e.g., Debris483 R=19.2 m) undergoing rock-rock collisions.
-# 3. L1-Optimal Pure-Axis Anti-Pinball Evasion (0.193 m/s^2):
-#    Uses 2x lateral authority on 100%-eff pure body axes with persistent track_id
-#    commitment hysteresis (immune to track-pruning index shifts) and pinball lookahead.
-# 4. Exact Ballistic CPA Zero-Effort-Miss (ZEM) & Zero-Chatter Hysteresis Coast Damp:
-#    Eliminates near-target 1/cos(theta) blowup, ZEM/DAMP interrupts, and post-victory
-#    thruster firing while guaranteeing capture inside AsteroidCycler's 50 m sphere.
+# 2. Tumble-Immune 500-Rock Moving-Debris Tracker + 2-Sweep Bounce Adaptation:
+#    Tracks position + velocity (exponentially-weighted 7-sweep WLS + Doppler range-rate)
+#    across SpaceCRAFT's 4.17s round-robin radar sweep, eliminates 1-sweep shadow ping-pong
+#    on tumbling giant boulders (R >= 17.8 m), adapts cleanly on confirmed 2-sweep bounces
+#    of small/medium rocks, and enforces strict convergence gates on n=1,2,3 distant tracks.
+# 3. Single-Shot L1-Optimal Pure-Axis Anti-Pinball Evasion (0.193 m/s^2):
+#    Completes active evades cleanly in ONE cheap early burn at high TCA (no 3x late
+#    re-triggers), with strong persistent track_id lock, target-return tie-breaker,
+#    lobe-safe close-range envelopes, and two-regime fast-monster Chaos standoff.
+# 4. Smart Per-Threat ZEM & Zero-Chatter Hysteresis Coast Damp:
+#    Cancels drift early without ever burning back into a freshly dodged forward rock,
+#    only blocks ZEM on converged (n >= 3) forward threats within 24 s, and cleanly cuts
+#    thrusters upon capture inside AsteroidCycler's 50 m keep-out sphere.
 
 # --- 1. Mission & Physics Constants ---
-V_CRUISE = 9.18             # Score- & fuel-optimal ballistic cruise speed (m/s)
+V_CRUISE = 9.15             # Score- & fuel-optimal ballistic cruise speed (m/s)
 DEADBAND_ENTER = 0.06       # Enter ballistic coast cleanly at V_CRUISE - 0.06
 MAX_ACCEL = 0.50            # Thrusters.MaxAccel_m_s2 ceiling (m/s^2)
 MAX_ANG_ACCEL = 0.05        # Thrusters.MaxAngAccel_rad_s2 ceiling (rad/s^2)
@@ -100,18 +102,21 @@ TRACK_STALE_MAX_S = 14.0    # Drop tracks not re-observed within 14 s
 
 SHIP_BOUND_RADIUS = 3.2     # Conservative SpaceBuggy bounding radius (m)
 TCA_HORIZON = 26.0          # 26 s lookahead for giant R=20 m moving rocks
-A_REQ_TRIG = 0.046          # Fuel-optimal dodge trigger threshold (m/s^2)
-BUF_MIN = 2.3               # Minimum mesh/maneuver safety standoff (m)
-BUF_SCALE = 0.16            # Proportional standoff for irregular lunar rock meshes
+A_REQ_TRIG = 0.048          # Fuel-optimal dodge trigger threshold (m/s^2)
+BUF_MIN = 2.5               # Minimum mesh/maneuver safety standoff (m)
+BUF_SCALE = 0.18            # Proportional standoff for irregular lunar rock meshes
 MONSTER_RAD_THRESH = 17.8   # Top-scale Rock2 monster boulders (R >= 17.8 m, e.g. Debris483)
-CLIMB_PRED_GAIN = 0.40      # Climb-aware relative velocity lookahead gain during CLIMB_Z
-CHAOS_TAPER_LO = 6.0        # Taper Chaos pre-bounce standoff to 0 by tca <= 6 s (m)
-CHAOS_TAPER_HI = 13.0       # Full Chaos pre-bounce standoff for tca >= 13 s (m)
-CHAOS_SCALE = 0.18          # Speed-proportional Chaos standoff scale for monster boulders
-CHAOS_MAX = 4.5             # Maximum pre-bounce Chaos standoff (m); shadow tracker handles bounces
+CLIMB_PRED_GAIN = 0.35      # Climb-aware relative velocity lookahead gain during CLIMB_Z
+CHAOS_TAPER_LO = 4.0        # Taper Chaos pre-bounce standoff to 0 by tca <= 4 s (m)
+CHAOS_TAPER_HI = 11.0       # Full Chaos pre-bounce standoff for tca >= 11 s (m)
+CHAOS_BASE_SCALE = 0.16     # Base speed-proportional Chaos standoff scale for monster boulders
+CHAOS_BASE_MAX = 4.8        # Max base Chaos standoff for normal-speed monster boulders (m)
+CHAOS_HI_SCALE = 2.15       # High-energy Chaos standoff ramp for fast monster boulders (>2.60 m/s)
+CHAOS_HI_MAX = 16.5         # Max high-energy Chaos pre-bounce standoff (m)
+CHAOS_HI_SPEED = 2.60       # Speed threshold (m/s) for high-energy monster boulder standoff
 
 # Coast Attitude & ZEM Constants
-EVADE_ZEM_COOLDOWN_S = 6.0  # Wait 6 s after dodge before ZEM steers back toward target
+EVADE_ZEM_COOLDOWN_S = 4.2  # Early ZEM return cooldown (protected by per-threat opposite-axis lock)
 COAST_DAMP_ENTER = 0.012    # Coast-only rate damp entry threshold (rad/s) — never interrupts ZEM
 COAST_DAMP_EXIT = 0.004     # Coast-only rate damp exit threshold (rad/s)
 ANG_VEL_FAILSAFE = 0.25     # Emergency tumble-damping threshold (rad/s)
@@ -315,6 +320,8 @@ class PhobosGNCController:
         self.prev_esc_dir = np.zeros(3, dtype=float)
         self.prev_esc_axis: str | None = None
         self.prev_esc_tid: int = -1
+        self.last_dodged_tid: int = -1
+        self.last_dodged_axis: str | None = None
         self.zem_burning: bool = False
         self.prev_zem_axis: str | None = None
         self.zem_blocked_until: float = -999.0
@@ -459,7 +466,7 @@ class PhobosGNCController:
             p_abs = loc_m + rel_raw
 
             best_j = -1
-            best_cost = 20.0
+            best_cost = 22.0
             innov_vec = np.zeros(3, dtype=float)
             if n_tr > 0:
                 dt_vec = t_meas - tr_t_ref
@@ -467,7 +474,7 @@ class PhobosGNCController:
                 d_pos = np.linalg.norm(pred_p - p_abs, axis=1)
                 d_diam = np.abs(tr_diam - diam_raw)
                 diam_tol = np.maximum(3.5, 0.35 * np.maximum(tr_diam, diam_raw))
-                cand_j = np.where((d_pos < 20.0) & (d_diam < diam_tol))[0]
+                cand_j = np.where((d_pos < 22.0) & (d_diam < diam_tol))[0]
                 for j in cand_j:
                     ji = int(j)
                     if ji in used_tracks:
@@ -483,16 +490,34 @@ class PhobosGNCController:
                 tr = self.tracks[best_j]
                 if t_meas > tr["last_t"] + 0.8:
                     n_prev = tr["n_obs"]
-                    v_old = tr["v_ref"].copy()
-                    prev_obs_t, prev_obs_p, _ = tr["obs"][-1]
+                    prev_obs_t, _prev_obs_p, _ = tr["obs"][-1]
                     dt_last = max(t_meas - prev_obs_t, 1.0)
+                    rad_tr = 0.5 * max(tr["diam"], diam_raw)
 
-                    # 1. Exact 7-sweep OLS (never wiped -> zero false-positive track degradation!)
+                    # Confirmed 2-sweep bounce trim ONLY for small/medium rocks (rad_tr < 17.8m)
+                    # on real multi-second sweeps (dt_last >= 2.0s). NEVER wipe 7-sweep obs on
+                    # giant tumbling boulders (rad_tr >= 17.8m) where irregular centroid shift is ~4.8m.
+                    in_norm = float(np.linalg.norm(innov_vec))
+                    detect_gate = 4.6
+                    confirmed_bounce = (
+                        n_prev >= 4
+                        and rad_tr < MONSTER_RAD_THRESH
+                        and dt_last >= 2.0
+                        and tr["sh_age"] >= 1
+                        and in_norm > 4.8
+                        and float(np.dot(innov_vec, tr["in_vec"])) > 16.0
+                    )
+
                     tr["obs"].append((t_meas, p_abs, diam_raw))
+                    if confirmed_bounce and len(tr["obs"]) > 3:
+                        while len(tr["obs"]) > 3:
+                            tr["obs"].popleft()
+
                     tr["last_t"] = t_meas
-                    tr["n_obs"] = len(tr["obs"])
+                    tr["n_obs"] = max(tr["n_obs"] + 1, len(tr["obs"]))
                     tr["diam"] = float(np.median([o[2] for o in tr["obs"]]))
 
+                    # Exponentially-weighted low-noise 7-sweep WLS (tau_w = 14.0s)
                     ts = np.array([o[0] for o in tr["obs"]], dtype=float)
                     ps = np.array([o[1] for o in tr["obs"]], dtype=float)
                     t_ref = ts[-1]
@@ -501,20 +526,20 @@ class PhobosGNCController:
                     a_g_rock = -MU_PHOBOS * ps[-1] / max(r_mag ** 3, 1.0)
                     ps_lin = ps - 0.5 * a_g_rock[None, :] * (dt_s[:, None] ** 2)
 
-                    sw = float(len(ts))
-                    st_ = float(np.sum(dt_s))
-                    stt = float(np.sum(dt_s * dt_s))
-                    lam_v = 6.0
+                    w = np.exp(dt_s / 14.0)
+                    sw = float(np.sum(w))
+                    st_ = float(np.sum(w * dt_s))
+                    stt = float(np.sum(w * dt_s * dt_s))
+                    lam_v = 1.5 if confirmed_bounce else 5.0
                     m00, m01, m11 = sw, st_, stt + lam_v
-                    det = m00 * m11 - m01 * m01
-                    rhs0 = ps_lin.sum(axis=0)
-                    rhs1 = (dt_s[:, None] * ps_lin).sum(axis=0)
+                    det = max(m00 * m11 - m01 * m01, 1e-6)
+                    rhs0 = (w[:, None] * ps_lin).sum(axis=0)
+                    rhs1 = ((w * dt_s)[:, None] * ps_lin).sum(axis=0)
                     p_est = (m11 * rhs0 - m01 * rhs1) / det
                     v_est = (-m01 * rhs0 + m00 * rhs1) / det
 
                     los_vec = p_abs - loc_m
                     los_d = float(np.linalg.norm(los_vec))
-                    v_rock_los = None
                     if los_d > 5.0:
                         u_los = los_vec / los_d
                         v_rock_los = rr_raw + float(np.dot(vel_m, u_los))
@@ -524,35 +549,19 @@ class PhobosGNCController:
                     if v_mag > 6.5:
                         v_est = v_est * (6.5 / v_mag)
 
-                    # 2. Parallel non-destructive post-bounce shadow hypothesis (for converged n_prev >= 4 tracks)
-                    v_2pt = (p_abs - prev_obs_p) / dt_last - 0.5 * a_g_rock * dt_last
-                    if v_rock_los is not None:
-                        v_2pt = v_2pt + 0.90 * (v_rock_los - float(np.dot(v_2pt, u_los))) * u_los
-                    v_jump = v_old + np.clip(1.60 * innov_vec / dt_last, -4.5, 4.5)
-                    if v_rock_los is not None:
-                        v_jump = v_jump + 0.90 * (v_rock_los - float(np.dot(v_jump, u_los))) * u_los
-
-                    in_norm = float(np.linalg.norm(innov_vec))
-                    if n_prev >= 4 and in_norm > 4.2:
-                        if tr["sh_age"] >= 1 and float(np.dot(innov_vec, tr["in_vec"])) > 6.0:
-                            tr["sh_age"] += 1
-                            tr["v_sh"] = 0.65 * v_2pt + 0.35 * v_jump
-                        else:
-                            tr["sh_age"] = 1
-                            tr["v_sh"] = v_jump
-                        tr["p_sh"] = p_abs.copy()
-                        tr["t_sh"] = t_meas
+                    if n_prev >= 4 and (in_norm > detect_gate or confirmed_bounce):
+                        tr["sh_age"] = (tr["sh_age"] + 1) if confirmed_bounce else 1
                         tr["in_vec"] = innov_vec.copy()
                     else:
                         tr["sh_age"] = 0
-                        tr["p_sh"] = p_est.copy()
-                        tr["v_sh"] = v_est.copy()
-                        tr["t_sh"] = t_ref
                         tr["in_vec"] = np.zeros(3, dtype=float)
 
                     tr["p_ref"] = p_est
                     tr["v_ref"] = v_est
                     tr["t_ref"] = t_ref
+                    tr["p_sh"] = p_est.copy()
+                    tr["v_sh"] = v_est.copy()
+                    tr["t_sh"] = t_ref
             else:
                 los_vec = p_abs - loc_m
                 los_d = float(np.linalg.norm(los_vec))
@@ -673,10 +682,11 @@ class PhobosGNCController:
         if w_mag > ANG_VEL_FAILSAFE and np.all(np.isfinite(ang_vel_b)):
             return np.zeros(3, dtype=float), -(ang_vel_b / w_mag) * min(0.05, 0.45 * w_mag), True, "TUMBLE_DAMP", None, zem_dist
 
-        # --- THREAT EVALUATION (Climb-Aware + Tapered Standoff + 33 s ZEM Lookahead) ---
+        # --- THREAT EVALUATION (Climb-Aware + Two-Regime Monster Standoff + Per-Threat ZEM Lock) ---
         urgent_threats = []
         threats_all = []
         threats_zem = []
+        dodged_still_ahead = False
         closest_diag = None
         min_margin = 1e9
 
@@ -684,10 +694,6 @@ class PhobosGNCController:
             dt_now = np.clip(sim_t - self._tr_t_ref, 0.0, TRACK_STALE_MAX_S)[:, None]
             p_rocks = self._tr_p_ref + self._tr_v_ref * dt_now + 0.5 * self._tr_ag * (dt_now ** 2)
             v_rocks = self._tr_v_ref + self._tr_ag * dt_now
-
-            dt_sh = np.clip(sim_t - self._tr_t_sh, 0.0, TRACK_STALE_MAX_S)[:, None]
-            p_shs = self._tr_p_sh + self._tr_v_sh * dt_sh + 0.5 * self._tr_ag * (dt_sh ** 2)
-            v_shs = self._tr_v_sh + self._tr_ag * dt_sh
 
             rels = p_rocks - loc[None, :]
             v_rels0 = v_rocks - vel[None, :] + 0.5 * (self._tr_ag - a_grav[None, :]) * 6.0
@@ -713,7 +719,7 @@ class PhobosGNCController:
             v_rel_n2 = np.sum(v_rels * v_rels, axis=1)
             tcas = -np.sum(rels * v_rels, axis=1) / np.maximum(v_rel_n2, 1e-6)
             rads = 0.5 * np.maximum(self._tr_diam, 1.0)
-            valid = (v_rel_n2 > 0.04) & (tcas > 0.0) & (tcas <= 33.0)
+            valid = (v_rel_n2 > 0.04) & (tcas > 0.0) & (tcas <= 30.0)
 
             for i in np.where(valid)[0]:
                 tca = float(tcas[i])
@@ -725,42 +731,34 @@ class PhobosGNCController:
                 rad_i = float(rads[i])
                 n_i = float(self._tr_n_obs[i])
                 tid_i = int(self._tr_id[i])
-                sh_age_i = int(self._tr_sh_age[i])
 
                 cpa_vec = rel + v_rel * tca
                 miss = float(np.linalg.norm(cpa_vec))
-
-                if sh_age_i > 0 and rad_i >= MONSTER_RAD_THRESH:
-                    rel_sh = p_shs[i] - loc
-                    v_rel_sh = v_shs[i] - vel + 0.5 * (self._tr_ag[i] - a_grav) * 6.0
-                    v2_sh = float(np.dot(v_rel_sh, v_rel_sh))
-                    if v2_sh > 0.04:
-                        tca_sh = -float(np.dot(rel_sh, v_rel_sh)) / v2_sh
-                        if 0.0 < tca_sh <= TCA_HORIZON:
-                            cpa_sh = rel_sh + v_rel_sh * tca_sh
-                            miss_sh = float(np.linalg.norm(cpa_sh))
-                            if miss_sh < miss:
-                                rel = rel_sh
-                                v_rel = v_rel_sh
-                                v_rock = v_shs[i]
-                                tca = tca_sh
-                                cpa_vec = cpa_sh
-                                miss = miss_sh
+                is_active = (tid_i == self.prev_esc_tid and self.evading)
 
                 v_rock_spd = float(np.linalg.norm(v_rock))
                 is_monster = (rad_i >= MONSTER_RAD_THRESH) and (n_i >= 4.0)
-                pos_unc = (3.5 if n_i < 2.0 else (1.6 if n_i < 4.0 else 0.6)) + (0.03 if n_i >= 4.0 else 0.11) * min(tca, 15.0)
+                pos_unc = (2.8 if n_i < 2.0 else (1.4 if n_i < 4.0 else 0.55)) + (0.03 if n_i >= 4.0 else 0.09) * min(tca, 15.0)
                 chaos_taper = float(np.clip((tca - CHAOS_TAPER_LO) / max(CHAOS_TAPER_HI - CHAOS_TAPER_LO, 0.5), 0.0, 1.0))
-                chaos_vel_buf = (min(CHAOS_MAX, CHAOS_SCALE * rad_i * max(0.0, v_rock_spd - 1.25)) * chaos_taper) if is_monster else 0.0
-                buf_scale = 0.23 if is_monster else BUF_SCALE
+                if is_monster:
+                    base_chaos = min(CHAOS_BASE_MAX, CHAOS_BASE_SCALE * rad_i * max(0.0, v_rock_spd - 1.35))
+                    hi_chaos = min(CHAOS_HI_MAX, CHAOS_HI_SCALE * rad_i * max(0.0, v_rock_spd - CHAOS_HI_SPEED))
+                    chaos_vel_buf = (base_chaos + hi_chaos) * chaos_taper
+                else:
+                    chaos_vel_buf = 0.0
+                buf_scale = 0.27 if is_monster else BUF_SCALE
                 buf = max(BUF_MIN, buf_scale * rad_i) + pos_unc + chaos_vel_buf
                 if tca < 5.0:
-                    min_b = max(2.0, 0.14 * rad_i)
+                    min_b = max(2.2, (0.21 if is_monster else 0.17) * rad_i)
                     alpha_t = float(np.clip((tca - 1.5) / 3.5, 0.0, 1.0))
                     buf = min_b + alpha_t * max(0.0, buf - min_b)
                 r_safe = rad_i + SHIP_BOUND_RADIUS + buf
 
-                if miss < r_safe + 40.0:
+                if tid_i == self.last_dodged_tid and 0.0 < tca <= 14.0 and miss < r_safe + 10.0:
+                    dodged_still_ahead = True
+
+                # Only converged (n>=3) forward rocks within 24 s block ZEM
+                if n_i >= 3.0 and tca <= 24.0 and miss < r_safe + 36.0:
                     threats_zem.append((tca, rel, v_rel, r_safe, miss))
 
                 if tca > TCA_HORIZON:
@@ -783,30 +781,43 @@ class PhobosGNCController:
                         "n_obs": int(n_i),
                     }
 
-                if n_i < 2.0 and tca > 7.5 and miss > rad_i + SHIP_BOUND_RADIUS + 1.5:
-                    continue
+                # Strict convergence gates: eliminate n=1,2,3 distant false alarms!
+                if not is_active:
+                    if n_i < 2.0 and (tca > 7.0 or miss > rad_i + SHIP_BOUND_RADIUS + 1.0):
+                        if not (tca <= 10.0 and miss < rad_i + SHIP_BOUND_RADIUS):
+                            continue
+                    elif n_i < 3.0 and tca > 12.0:
+                        continue
+                    elif n_i < 4.0 and tca > (16.5 if rad_i >= MONSTER_RAD_THRESH else 14.0):
+                        continue
 
                 if miss < r_safe + 14.0:
                     threats_all.append((tca, rel, v_rel, r_safe, a_req, cpa_vec, miss, rad_i, tid_i))
 
-                is_active = (tid_i == self.prev_esc_tid and self.evading)
-                base_trig = 0.016 if (is_monster and v_rock_spd > 1.25) else A_REQ_TRIG
+                base_trig = 0.014 if (is_monster and v_rock_spd > 2.20) else (0.018 if (is_monster and v_rock_spd > 1.45) else A_REQ_TRIG)
 
+                # Single-shot complete EVADE: once active on tid_i, finish cleanly to miss >= r_safe
+                # in ONE cheap early burn at high TCA instead of stopping short and re-triggering 3x!
                 if is_active:
-                    a_trig = base_trig * 0.45
+                    a_trig = 0.0
                 else:
-                    if tca < 2.0 and miss > rad_i + SHIP_BOUND_RADIUS + 1.6:
+                    if tca < 2.0 and miss > rad_i + SHIP_BOUND_RADIUS + max(1.8, (0.21 if is_monster else 0.16) * rad_i):
                         continue
                     a_trig = base_trig
 
-                if (need > 0.0 and a_req >= a_trig) or (tca < 4.5 and miss < rad_i + SHIP_BOUND_RADIUS + 1.4):
+                if (need > 0.0 and a_req >= a_trig) or (tca < 4.5 and miss < rad_i + SHIP_BOUND_RADIUS + max(1.8, (0.20 if is_monster else 0.16) * rad_i)):
                     urgent_threats.append((tca, rel, v_rel, r_safe, a_req, cpa_vec, miss, rad_i, tid_i))
 
         w_align = self._compute_align_rate(c_ph_to_body, u_goal, a_grav_lat, dist_to_target, w_mag)
 
-        # --- PRIORITY 1: L1-OPTIMAL LYAPUNOV PURE-AXIS ANTI-PINBALL EVASION ---
+        # --- PRIORITY 1: SINGLE-SHOT L1-OPTIMAL LYAPUNOV PURE-AXIS ANTI-PINBALL EVASION ---
         if len(urgent_threats) > 0:
-            urgent_threats.sort(key=lambda x: (-x[4], x[0]))
+            def _thr_prio(x: tuple) -> tuple[float, float]:
+                t_x, a_x, tid_x = x[0], x[4], x[8]
+                if self.evading and tid_x == self.prev_esc_tid:
+                    return (-(a_x * 1.12 + 0.006), t_x)
+                return (-a_x, t_x)
+            urgent_threats.sort(key=_thr_prio)
             tca, rel, v_rel, r_safe, a_req, cpa_vec, miss, rad_i, tid_i = urgent_threats[0]
 
             v_rel_u = v_rel / max(float(np.linalg.norm(v_rel)), 1e-6)
@@ -815,8 +826,8 @@ class PhobosGNCController:
 
             if p_norm > 0.6:
                 esc_dir = perp / p_norm
-                if tid_i == self.prev_esc_tid and float(np.linalg.norm(self.prev_esc_dir)) > 0.5 and miss < 4.5:
-                    if float(np.dot(esc_dir, self.prev_esc_dir)) < -0.2:
+                if tid_i == self.prev_esc_tid and float(np.linalg.norm(self.prev_esc_dir)) > 0.5 and miss < r_safe:
+                    if float(np.dot(esc_dir, self.prev_esc_dir)) < -0.1:
                         esc_dir = self.prev_esc_dir.copy()
             else:
                 if tid_i == self.prev_esc_tid and float(np.linalg.norm(self.prev_esc_dir)) > 0.5:
@@ -840,7 +851,7 @@ class PhobosGNCController:
                 v2_1 = float(np.dot(vr1, vr1))
                 t1 = max(0.0, -float(np.dot(rel, vr1)) / max(v2_1, 1e-6))
                 m1 = float(np.linalg.norm(rel + vr1 * t1))
-                if m1 <= miss + 0.2:
+                if m1 <= miss + 0.15:
                     continue
                 min_clear = m1 - r_safe
                 for (_, r2, vr2, rs2, _, _, _, _, tid2) in threats_all:
@@ -855,8 +866,9 @@ class PhobosGNCController:
                         m2 = float(np.linalg.norm(r2 + vr2_new * t2))
                         min_clear = min(min_clear, m2 - (rs2 - 0.5))
 
-                hyst = 0.42 if (tid_i == self.prev_esc_tid and k == self.prev_esc_axis) else (0.22 if k == self.prev_esc_axis else 0.0)
-                score_k = align + hyst + (0.45 * min_clear if min_clear < 0.0 else min(0.25, 0.05 * min_clear))
+                hyst = 0.85 if (tid_i == self.prev_esc_tid and k == self.prev_esc_axis) else (0.22 if k == self.prev_esc_axis else 0.0)
+                tgt_bonus = -0.12 * float(np.dot(u_act_ph, zem_lat)) / max(zem_dist, 25.0)
+                score_k = align + hyst + tgt_bonus + (0.45 * min_clear if min_clear < 0.0 else min(0.25, 0.05 * min_clear))
                 if score_k > best_score:
                     best_score = score_k
                     best_axis = k
@@ -865,6 +877,8 @@ class PhobosGNCController:
                 self.prev_esc_dir = c_body_to_ph @ AXIS_UNIT_BODY[best_axis]
                 self.prev_esc_axis = best_axis
                 self.prev_esc_tid = tid_i
+                self.last_dodged_tid = tid_i
+                self.last_dodged_axis = best_axis
                 self.evading = True
                 self.last_evade_t = sim_t
                 self.zem_burning = False
@@ -877,6 +891,8 @@ class PhobosGNCController:
             self.prev_esc_dir = esc_dir
             self.prev_esc_axis = ax_k
             self.prev_esc_tid = tid_i
+            self.last_dodged_tid = tid_i
+            self.last_dodged_axis = ax_k
             self.evading = True
             self.last_evade_t = sim_t
             self.zem_burning = False
@@ -886,6 +902,9 @@ class PhobosGNCController:
             return acc_b, ang_b, False, f"EVADE_{ax_k}", closest_diag, zem_dist
 
         self.evading = False
+        if not dodged_still_ahead:
+            self.last_dodged_tid = -1
+            self.last_dodged_axis = None
         if (sim_t - self.last_evade_t) > 1.0:
             self.prev_esc_dir = np.zeros(3, dtype=float)
             self.prev_esc_axis = None
@@ -948,7 +967,7 @@ class PhobosGNCController:
             acc_b, ang_b = self._select_vertex("+Z", ang_vel_b, w_align, weights=(1.0, 1.0, 0.15))
             return acc_b, ang_b, False, "BOOST", closest_diag, zem_dist
 
-        # Fuel-optimal ZEM with 28 s directional debris safety lookahead
+        # Fuel-optimal ZEM with 23 s directional debris safety lookahead & per-threat opposite-axis lock
         if (sim_t - self.last_evade_t) >= EVADE_ZEM_COOLDOWN_S:
             if dist_to_target > 600.0:
                 zem_trig = 54.0
@@ -968,7 +987,10 @@ class PhobosGNCController:
 
             if self.zem_burning and zem_dist > 1e-3:
                 u_zem = -zem_lat / zem_dist
-                excl = () if z_align < 0.65 else ("+Z", "-Z")
+                excl = set() if z_align < 0.65 else {"+Z", "-Z"}
+                if dodged_still_ahead and self.last_dodged_axis is not None:
+                    opp_map = {"+X": "-X", "-X": "+X", "+Y": "-Y", "-Y": "+Y", "+Z": "-Z", "-Z": "+Z"}
+                    excl.add(opp_map[self.last_dodged_axis])
                 ub = c_ph_to_body @ u_zem
                 ranked = []
                 for k, ax_u in AXIS_UNIT_BODY.items():
@@ -980,9 +1002,9 @@ class PhobosGNCController:
                         ranked.append((d_hyst, d, k))
                 ranked.sort(key=lambda x: -x[0])
 
-                dv_need = max(0.24, (zem_dist - zem_stop) / max(t_cpa, 6.0))
-                dv_cap = min(dv_need + 0.15, 0.95)
-                probes = (0.22, 0.50 * dv_cap, dv_cap)
+                dv_need = max(0.20, (zem_dist - zem_stop) / max(t_cpa, 6.0))
+                dv_cap = min(dv_need + 0.12, 0.80)
+                probes = (0.18, 0.42 * dv_cap, dv_cap)
 
                 for (_, _, ax_k) in ranked[:2]:
                     u_act_ph = c_body_to_ph @ AXIS_UNIT_BODY[ax_k]
@@ -994,9 +1016,9 @@ class PhobosGNCController:
                             if v2 < 0.04:
                                 continue
                             t_new = -float(np.dot(rr_j, vr_new)) / v2
-                            if 0.0 < t_new <= 28.0:
+                            if 0.0 < t_new <= 23.0:
                                 m_new = float(np.linalg.norm(rr_j + vr_new * t_new))
-                                if m_new < rs_j + 1.8 and m_new < m_cur_j - 0.10:
+                                if m_new < rs_j + 1.5 and m_new < m_cur_j - 0.15:
                                     safe = False
                                     break
                         if not safe:
