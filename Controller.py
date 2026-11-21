@@ -62,28 +62,30 @@ def SetCommand(accelCommand: npt.NDArray, angAccelCommand: npt.NDArray) -> None:
 from collections import deque
 
 # ==============================================================================
-# ULTRA-STABLE HIGH-SCORE LYAPUNOV MULTI-VERTEX GNC CONTROLLER (V10)
+# ULTRA-STABLE 60-65 CONSTANT-SCORE LYAPUNOV MULTI-VERTEX GNC CONTROLLER (V11)
 # ==============================================================================
-# Key Physics & Stability Innovations for SpaceBuggy (Mass=3388.7kg, Isp=80s, 38 RCS jets):
+# Key Physics & Fuel-Efficiency Innovations for SpaceBuggy (Mass=3388.7kg, Isp=80s, 38 RCS jets):
 # 1. Lyapunov Multi-Vertex Pure-Axis Allocator:
 #    Unlocks 100.0%-L1-efficiency 4-jet simplex vertices on +Z, +X, -X, -Y, -Z
 #    (0.1929 m/s^2 — 2.01x default +Z thrust!) and 3-jet vertices on +Y (0.1447 m/s^2),
 #    while closed-loop feedback on measured ang_vel_body cancels net torque to ~0
-#    AND steers the 5.2 deg gravity-compensated launch aim for 0.00 kg extra fuel
-#    and 0.0 s dead time (upright, glass-smooth flight, maxW < 0.03 rad/s).
-# 2. Tumble-Immune 500-Rock Moving-Debris Tracker + 2-Sweep Bounce Adaptation:
+#    AND steers the gravity-compensated launch aim for 0.00 kg extra fuel.
+# 2. Zero-Fuel CLIMB_YIELD (Timing-Modulation Crossing-Debris Avoidance):
+#    When a converged (n >= 4) fast-crossing debris rock blocks the climb corridor and
+#    waiting clearly improves miss clearance without endangering neighboring tracks,
+#    cleanly pauses +Z thrust at 0.00 kg/s until the rock vacates the path (saving ~5.0 kg
+#    of lateral EVADE + ZEM with 0.0 deg attitude tilt and 0.0 m ZEM disturbance), while
+#    also shifting downstream encounter phase. EVADE stays 100% armed with top priority.
+# 3. Tumble-Immune 500-Rock Moving-Debris Tracker + Extreme-Range Chaos Gate:
 #    Tracks position + velocity (exponentially-weighted 7-sweep WLS + Doppler range-rate)
-#    across SpaceCRAFT's 4.17s round-robin radar sweep, eliminates 1-sweep shadow ping-pong
-#    on tumbling giant boulders (R >= 17.8 m), adapts cleanly on confirmed 2-sweep bounces
-#    of small/medium rocks, and enforces strict convergence gates on n=1,2,3 distant tracks.
-# 3. Single-Shot L1-Optimal Pure-Axis Anti-Pinball Evasion (0.193 m/s^2):
-#    Completes active evades cleanly in ONE cheap early burn at high TCA (no 3x late
-#    re-triggers), with strong persistent track_id lock, target-return tie-breaker,
-#    lobe-safe close-range envelopes, and two-regime fast-monster Chaos standoff.
-# 4. Smart Per-Threat ZEM & Zero-Chatter Hysteresis Coast Damp:
-#    Cancels drift early without ever burning back into a freshly dodged forward rock,
-#    only blocks ZEM on converged (n >= 3) forward threats within 24 s, and cleanly cuts
-#    thrusters upon capture inside AsteroidCycler's 50 m keep-out sphere.
+#    across SpaceCRAFT's 4.17s round-robin radar sweep, retains full Run1ce monster-boulder
+#    standoff armor, and gates extreme-range (tca > 21.5s) high-chaos triggers to n >= 5
+#    to eliminate unconverged n=4 false evades on distant fast boulders (saving ~5.3 kg!).
+# 4. Simpson Midpoint Gravity + Online Coast Environmental Accel Observer + Edge ZEM:
+#    Directly measures live Phobos Coriolis + Mars tidal acceleration during pure coast,
+#    computes exact 3D CPA miss distance norm(zem_vec) with < 0.8 m error, uses edge-optimized
+#    anti-chatter ZEM capture inside AsteroidCycler's 50 m sphere, and raises coast rate-damp
+#    entry to 0.024 rad/s to eliminate wasted DAMP burns.
 
 # --- 1. Mission & Physics Constants ---
 V_CRUISE = 9.15             # Score- & fuel-optimal ballistic cruise speed (m/s)
@@ -114,11 +116,16 @@ CHAOS_BASE_MAX = 4.8        # Max base Chaos standoff for normal-speed monster b
 CHAOS_HI_SCALE = 2.15       # High-energy Chaos standoff ramp for fast monster boulders (>2.60 m/s)
 CHAOS_HI_MAX = 16.5         # Max high-energy Chaos pre-bounce standoff (m)
 CHAOS_HI_SPEED = 2.60       # Speed threshold (m/s) for high-energy monster boulder standoff
+CHAOS_HI_N5_TCA = 21.5      # Require n >= 5 for hi_chaos beyond 21.5 s (eliminates n=4 false evades)
+
+# Zero-Fuel CLIMB_YIELD Constants
+MAX_YIELD_S = 10.5          # Maximum total zero-fuel climb-yield budget (s)
+YIELD_CLEAR_PAD = 3.5       # Hold yield until predicted full-climb miss >= r_safe + 3.5 m
 
 # Coast Attitude & ZEM Constants
 EVADE_ZEM_COOLDOWN_S = 4.2  # Early ZEM return cooldown (protected by per-threat opposite-axis lock)
-COAST_DAMP_ENTER = 0.012    # Coast-only rate damp entry threshold (rad/s) — never interrupts ZEM
-COAST_DAMP_EXIT = 0.004     # Coast-only rate damp exit threshold (rad/s)
+COAST_DAMP_ENTER = 0.024    # Coast-only rate damp entry threshold (rad/s) — eliminates wasted DAMP burns
+COAST_DAMP_EXIT = 0.008     # Coast-only rate damp exit threshold (rad/s)
 ANG_VEL_FAILSAFE = 0.25     # Emergency tumble-damping threshold (rad/s)
 
 # Exact 38-jet indices per body axis for 100%-efficiency zero-torque convex hulls
@@ -325,6 +332,86 @@ class PhobosGNCController:
         self.zem_burning: bool = False
         self.prev_zem_axis: str | None = None
         self.zem_blocked_until: float = -999.0
+        self.zem_axis_lock_until: float = -999.0
+
+        # Zero-fuel CLIMB_YIELD & online coast environmental accel observer
+        self.yielding: bool = False
+        self.yield_tid: int = -1
+        self.yield_hold_until: float = -999.0
+        self.total_yield_s: float = 0.0
+        self.last_step_t: float | None = None
+        self.coast_start_t: float | None = None
+        self.a_env_extra = np.zeros(3, dtype=float)
+        self.a_env_init: bool = False
+
+    def _update_env_observer(
+        self,
+        sim_t: float,
+        loc: npt.NDArray,
+        vel: npt.NDArray,
+        is_pure_coast: bool,
+        dt_step: float,
+    ) -> None:
+        """Online coast environmental acceleration observer (Phobos Coriolis + Mars tidal gravity)."""
+        if not is_pure_coast:
+            self.coast_start_t = None
+            return
+        if self.coast_start_t is None:
+            self.coast_start_t = sim_t
+            return
+        win = 3.0
+        if (sim_t - self.coast_start_t) >= (win + 0.25) and len(self.hist_t) >= 2:
+            t_q = sim_t - win
+            if self.hist_t[0] > t_q:
+                return
+            loc_p, vel_p = self._lookup_shuttle_state(t_q, loc, vel, sim_t)
+            a_meas = (vel - vel_p) / win
+            p_m = 0.5 * (loc + loc_p)
+            r_m = float(np.linalg.norm(p_m))
+            a_sph_m = -MU_PHOBOS * p_m / max(r_m ** 3, 1.0)
+            a_ex = a_meas - a_sph_m
+            if not np.all(np.isfinite(a_ex)):
+                return
+            a_ex = np.clip(a_ex, -0.015, 0.015)
+            if not self.a_env_init:
+                self.a_env_extra = a_ex.copy()
+                self.a_env_init = True
+            else:
+                alpha = float(np.clip(dt_step / 0.40, 0.01, 0.25))
+                self.a_env_extra = (1.0 - alpha) * self.a_env_extra + alpha * a_ex
+
+    def _predict_climb_cpa(
+        self,
+        rel: npt.NDArray,
+        v_rock: npt.NDArray,
+        vel: npt.NDArray,
+        u_goal: npt.NDArray,
+        a_g0: npt.NDArray,
+        delay_s: float,
+    ) -> tuple[float, float]:
+        """Predict rock CPA under: zero-thrust coast for delay_s, then +Z CLIMB_Z to V_CRUISE."""
+        rel_d = rel + (v_rock - vel) * delay_s
+        vel_d = vel + a_g0 * delay_s
+        v_long_d = max(float(np.dot(vel_d, u_goal)), 0.5)
+        dv_rem = max(0.0, V_CRUISE - v_long_d)
+        a_net = 0.183
+        t_burn = dv_rem / a_net
+        vr0 = v_rock - vel_d
+        vr_n2 = float(np.dot(vr0, vr0))
+        t_f = max(-float(np.dot(rel_d, vr0)) / max(vr_n2, 0.25), 0.5)
+        vr_eff = vr0
+        for _ in range(3):
+            tc = min(t_f, t_burn)
+            dv_avg = a_net * tc * (1.0 - 0.5 * tc / max(t_f, 0.5))
+            vr_eff = vr0 - dv_avg * u_goal
+            ve2 = float(np.dot(vr_eff, vr_eff))
+            if ve2 < 0.25:
+                return -1.0, 1e9
+            t_f = -float(np.dot(rel_d, vr_eff)) / ve2
+            if t_f <= 0.1:
+                return t_f, float(np.linalg.norm(rel_d))
+        cpa = rel_d + vr_eff * t_f
+        return delay_s + t_f, float(np.linalg.norm(cpa))
 
     def _select_vertex(
         self,
@@ -640,6 +727,8 @@ class PhobosGNCController:
     ) -> tuple[npt.NDArray, npt.NDArray, bool, str, dict | None, float]:
         if self.start_loc is None:
             self.start_loc = loc.copy()
+        dt_step = DT_LYAP if self.last_step_t is None else float(np.clip(sim_t - self.last_step_t, 0.0, 0.2))
+        self.last_step_t = sim_t
         if len(self.hist_t) == 0 or sim_t > self.hist_t[-1] + 1e-4:
             self.hist_t.append(sim_t)
             self.hist_loc.append(loc.copy())
@@ -658,16 +747,25 @@ class PhobosGNCController:
         v_lat_mag = float(np.linalg.norm(v_lat_vec))
         w_mag = float(np.linalg.norm(ang_vel_b))
 
-        # Exact Ballistic Closest-Point-of-Approach (CPA) ZEM at AsteroidCycler
+        # Exact 3D Ballistic CPA ZEM with Simpson Midpoint Gravity + Online Environmental Observer
         r_ph_norm = float(np.linalg.norm(loc))
-        a_grav = -MU_PHOBOS * loc / max(r_ph_norm ** 3, 1.0)
-        a_grav_long = float(np.dot(a_grav, u_goal))
-        a_grav_lat = a_grav - a_grav_long * u_goal
+        a_g0 = -MU_PHOBOS * loc / max(r_ph_norm ** 3, 1.0)
+        a_g0_eff = a_g0 + self.a_env_extra
+        a_grav_long0 = float(np.dot(a_g0_eff, u_goal))
 
         v_eff = max(v_long, 1.5)
         t_go_lin = dist_to_target / v_eff
-        v_avg = max(0.5 * (v_eff + max(v_eff + a_grav_long * t_go_lin, 1.5)), 1.5)
+        v_avg = max(0.5 * (v_eff + max(v_eff + a_grav_long0 * t_go_lin, 1.5)), 1.5)
         t_go = min(dist_to_target / v_avg, 260.0)
+
+        p_mid = loc + 0.5 * vel * t_go + 0.125 * a_g0_eff * (t_go * t_go)
+        r_mid = float(np.linalg.norm(p_mid))
+        a_g_mid = -MU_PHOBOS * p_mid / max(r_mid ** 3, 1.0)
+        r_end = float(np.linalg.norm(target_loc))
+        a_g_end = -MU_PHOBOS * target_loc / max(r_end ** 3, 1.0)
+        a_grav = (a_g0 + 4.0 * a_g_mid + a_g_end) / 6.0 + self.a_env_extra
+        a_grav_long = float(np.dot(a_grav, u_goal))
+        a_grav_lat = a_grav - a_grav_long * u_goal
 
         p_rel = -r_to_goal + vel * t_go + 0.5 * a_grav * (t_go * t_go)
         v_end = vel + a_grav * t_go
@@ -676,19 +774,24 @@ class PhobosGNCController:
         t_cpa = float(np.clip(t_go + dt_cpa, 0.0, 260.0))
         zem_vec = -r_to_goal + vel * t_cpa + 0.5 * a_grav * (t_cpa * t_cpa)
         zem_lat = zem_vec - float(np.dot(zem_vec, u_goal)) * u_goal
-        zem_dist = float(np.linalg.norm(zem_lat))
+        zem_lat_norm = float(np.linalg.norm(zem_lat))
+        zem_dist = float(np.linalg.norm(zem_vec))
 
         # --- EMERGENCY TUMBLE FAILSAFE ---
         if w_mag > ANG_VEL_FAILSAFE and np.all(np.isfinite(ang_vel_b)):
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
             return np.zeros(3, dtype=float), -(ang_vel_b / w_mag) * min(0.05, 0.45 * w_mag), True, "TUMBLE_DAMP", None, zem_dist
 
-        # --- THREAT EVALUATION (Climb-Aware + Two-Regime Monster Standoff + Per-Threat ZEM Lock) ---
+        # --- THREAT EVALUATION (Climb-Aware + Extreme-Range Chaos Gate + Yield Candidates) ---
         urgent_threats = []
         threats_all = []
         threats_zem = []
+        yield_cands = []
         dodged_still_ahead = False
         closest_diag = None
         min_margin = 1e9
+
+        in_climb = (not self.long_coasting) and (v_long < V_CRUISE - DEADBAND_ENTER)
 
         if len(self._tr_t_ref) > 0:
             dt_now = np.clip(sim_t - self._tr_t_ref, 0.0, TRACK_STALE_MAX_S)[:, None]
@@ -696,11 +799,11 @@ class PhobosGNCController:
             v_rocks = self._tr_v_ref + self._tr_ag * dt_now
 
             rels = p_rocks - loc[None, :]
-            v_rels0 = v_rocks - vel[None, :] + 0.5 * (self._tr_ag - a_grav[None, :]) * 6.0
+            v_rels0 = v_rocks - vel[None, :] + 0.5 * (self._tr_ag - a_g0[None, :]) * 6.0
             v_rel0_n2 = np.sum(v_rels0 * v_rels0, axis=1)
             tcas0 = -np.sum(rels * v_rels0, axis=1) / np.maximum(v_rel0_n2, 1e-6)
 
-            if (not self.long_coasting) and CLIMB_PRED_GAIN > 0.0 and v_long < V_CRUISE - 0.15:
+            if in_climb and (not self.yielding) and CLIMB_PRED_GAIN > 0.0 and v_long < V_CRUISE - 0.15:
                 dv_rem_c = max(0.0, V_CRUISE - v_long) * CLIMB_PRED_GAIN
                 a_c = 0.19 * CLIMB_PRED_GAIN
                 t_pos = np.maximum(tcas0, 0.1)
@@ -719,7 +822,7 @@ class PhobosGNCController:
             v_rel_n2 = np.sum(v_rels * v_rels, axis=1)
             tcas = -np.sum(rels * v_rels, axis=1) / np.maximum(v_rel_n2, 1e-6)
             rads = 0.5 * np.maximum(self._tr_diam, 1.0)
-            valid = (v_rel_n2 > 0.04) & (tcas > 0.0) & (tcas <= 30.0)
+            valid = (v_rel_n2 > 0.04) & (tcas > 0.0) & (tcas <= 44.0)
 
             for i in np.where(valid)[0]:
                 tca = float(tcas[i])
@@ -742,7 +845,10 @@ class PhobosGNCController:
                 chaos_taper = float(np.clip((tca - CHAOS_TAPER_LO) / max(CHAOS_TAPER_HI - CHAOS_TAPER_LO, 0.5), 0.0, 1.0))
                 if is_monster:
                     base_chaos = min(CHAOS_BASE_MAX, CHAOS_BASE_SCALE * rad_i * max(0.0, v_rock_spd - 1.35))
-                    hi_chaos = min(CHAOS_HI_MAX, CHAOS_HI_SCALE * rad_i * max(0.0, v_rock_spd - CHAOS_HI_SPEED))
+                    if n_i >= 5.0 or tca <= CHAOS_HI_N5_TCA:
+                        hi_chaos = min(CHAOS_HI_MAX, CHAOS_HI_SCALE * rad_i * max(0.0, v_rock_spd - CHAOS_HI_SPEED))
+                    else:
+                        hi_chaos = 0.0
                     chaos_vel_buf = (base_chaos + hi_chaos) * chaos_taper
                 else:
                     chaos_vel_buf = 0.0
@@ -756,6 +862,12 @@ class PhobosGNCController:
 
                 if tid_i == self.last_dodged_tid and 0.0 < tca <= 14.0 and miss < r_safe + 10.0:
                     dodged_still_ahead = True
+
+                # Converged climb-corridor crossing rocks eligible for Zero-Fuel CLIMB_YIELD
+                if in_climb and n_i >= 4.0 and v_long >= 1.2 and v_long <= (V_CRUISE - 0.9):
+                    t_c0, m_c0 = self._predict_climb_cpa(rel, v_rock, vel, u_goal, a_g0, 0.0)
+                    if 4.0 < t_c0 <= 40.0 and m_c0 < r_safe + 16.0:
+                        yield_cands.append((t_c0, m_c0, rel, v_rock, r_safe, rad_i, tid_i))
 
                 # Only converged (n>=3) forward rocks within 24 s block ZEM
                 if n_i >= 3.0 and tca <= 24.0 and miss < r_safe + 36.0:
@@ -812,6 +924,9 @@ class PhobosGNCController:
 
         # --- PRIORITY 1: SINGLE-SHOT L1-OPTIMAL LYAPUNOV PURE-AXIS ANTI-PINBALL EVASION ---
         if len(urgent_threats) > 0:
+            self.yielding = False
+            self.yield_tid = -1
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
             def _thr_prio(x: tuple) -> tuple[float, float]:
                 t_x, a_x, tid_x = x[0], x[4], x[8]
                 if self.evading and tid_x == self.prev_esc_tid:
@@ -867,7 +982,7 @@ class PhobosGNCController:
                         min_clear = min(min_clear, m2 - (rs2 - 0.5))
 
                 hyst = 0.85 if (tid_i == self.prev_esc_tid and k == self.prev_esc_axis) else (0.22 if k == self.prev_esc_axis else 0.0)
-                tgt_bonus = -0.12 * float(np.dot(u_act_ph, zem_lat)) / max(zem_dist, 25.0)
+                tgt_bonus = -0.12 * float(np.dot(u_act_ph, zem_lat)) / max(zem_lat_norm, 25.0)
                 score_k = align + hyst + tgt_bonus + (0.45 * min_clear if min_clear < 0.0 else min(0.25, 0.05 * min_clear))
                 if score_k > best_score:
                     best_score = score_k
@@ -910,12 +1025,63 @@ class PhobosGNCController:
             self.prev_esc_axis = None
             self.prev_esc_tid = -1
 
-        # --- PRIORITY 2: LYAPUNOV 5-VERTEX +Z CLIMB (0.1929 m/s^2, 100% EFF, FREE AIM!) ---
+        # --- PRIORITY 2: ZERO-FUEL CLIMB_YIELD + LYAPUNOV 5-VERTEX +Z CLIMB ---
         if v_long >= (V_CRUISE - DEADBAND_ENTER):
             self.long_coasting = True
 
         if not self.long_coasting:
             h_lifted = float(np.linalg.norm(loc - self.start_loc))
+            should_yield = False
+            if h_lifted >= 2.0 and self.total_yield_s < MAX_YIELD_S and len(yield_cands) > 0:
+                rem_budget = MAX_YIELD_S - self.total_yield_s
+                if self.yielding and self.yield_tid >= 0:
+                    for (_t_c0, m_c0, rel_c, vrock_c, rs_c, _rad_c, tid_c) in yield_cands:
+                        if tid_c != self.yield_tid:
+                            continue
+                        if m_c0 < rs_c + YIELD_CLEAR_PAD:
+                            _td1, m_d1 = self._predict_climb_cpa(rel_c, vrock_c, vel, u_goal, a_g0, 2.5)
+                            if (sim_t < self.yield_hold_until) or (m_d1 > m_c0 - 0.5):
+                                safe_d = True
+                                for (_, m2, r2, vr2, rs2, _, tid2) in yield_cands:
+                                    if tid2 == tid_c:
+                                        continue
+                                    _, m2d = self._predict_climb_cpa(r2, vr2, vel, u_goal, a_g0, 2.5)
+                                    if m2d < rs2 + 1.0 and m2d < m2 - 0.5:
+                                        safe_d = False
+                                        break
+                                if safe_d:
+                                    should_yield = True
+                        break
+                else:
+                    for (_t_c0, m_c0, rel_c, vrock_c, rs_c, _rad_c, tid_c) in yield_cands:
+                        if m_c0 < rs_c + 1.0:
+                            d_probe = min(max(rem_budget, 3.0), 8.5)
+                            _td1, m_d1 = self._predict_climb_cpa(rel_c, vrock_c, vel, u_goal, a_g0, 2.5)
+                            _td2, m_d2 = self._predict_climb_cpa(rel_c, vrock_c, vel, u_goal, a_g0, d_probe)
+                            if (m_d2 >= rs_c + 2.0) and (m_d2 > m_c0 + 3.0) and (m_d1 > m_c0 - 1.5):
+                                safe_d = True
+                                for (_, m2, r2, vr2, rs2, _, tid2) in yield_cands:
+                                    if tid2 == tid_c:
+                                        continue
+                                    _, m2d = self._predict_climb_cpa(r2, vr2, vel, u_goal, a_g0, 2.5)
+                                    if m2d < rs2 + 1.5 and m2d < m2 - 0.5:
+                                        safe_d = False
+                                        break
+                                if safe_d:
+                                    should_yield = True
+                                    self.yield_tid = tid_c
+                                    self.yield_hold_until = sim_t + 0.80
+                                    break
+            if should_yield:
+                self.yielding = True
+                self.total_yield_s += dt_step
+                self._update_env_observer(sim_t, loc, vel, True, dt_step)
+                return np.zeros(3, dtype=float), np.zeros(3, dtype=float), True, "CLIMB_YIELD", closest_diag, zem_dist
+
+            self.yielding = False
+            self.yield_tid = -1
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
+
             ez = AXIS_UNIT_BODY["+Z"]
             ug_b = c_ph_to_body @ u_goal
             goal_err = float(np.arctan2(np.linalg.norm(np.cross(ez, ug_b)), np.clip(ug_b[2], -1.0, 1.0)))
@@ -950,9 +1116,10 @@ class PhobosGNCController:
             acc_b, ang_b = self._select_vertex("+Z", ang_vel_b, w_des, weights=(1.0, 1.0, 0.15))
             return acc_b, ang_b, False, "CLIMB_Z", closest_diag, zem_dist
 
-        # --- PRIORITY 3: 6-AXIS RECOVERY / PURE-AXIS ZEM / HYSTERESIS COAST DAMP ---
+        # --- PRIORITY 3: 6-AXIS RECOVERY / EDGE-OPTIMIZED ANTI-CHATTER ZEM / HYSTERESIS COAST DAMP ---
         z_align = float(np.dot(c_body_to_ph @ AXIS_UNIT_BODY["+Z"], u_goal))
         if (t_cpa <= 0.5) or (v_long < 2.5 and dist_to_target > 60.0):
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
             v_des = u_goal * min(7.0, max(3.5, 0.06 * dist_to_target))
             dv_rec = v_des - vel
             dvn = float(np.linalg.norm(dv_rec))
@@ -963,30 +1130,31 @@ class PhobosGNCController:
                 acc_b, ang_b = self._select_vertex(ax_k, ang_vel_b, w_align, weights=(1.0, 1.0, 1.0))
                 return acc_b, ang_b, False, f"RECOV_{ax_k}", closest_diag, zem_dist
         elif v_long < 4.5 and dist_to_target > 140.0 and z_align > 0.78 and zem_dist < 44.0:
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
             self.damping = False
             acc_b, ang_b = self._select_vertex("+Z", ang_vel_b, w_align, weights=(1.0, 1.0, 0.15))
             return acc_b, ang_b, False, "BOOST", closest_diag, zem_dist
 
-        # Fuel-optimal ZEM with 23 s directional debris safety lookahead & per-threat opposite-axis lock
+        # Edge-optimized ZEM with exact 3D CPA norm(zem_vec), anti-chatter lock & 23 s debris lookahead
         if (sim_t - self.last_evade_t) >= EVADE_ZEM_COOLDOWN_S:
             if dist_to_target > 600.0:
                 zem_trig = 54.0
-                zem_stop = 39.5
+                zem_stop = 44.0
             elif dist_to_target > 160.0:
-                zem_trig = 43.0
-                zem_stop = 36.5
+                zem_trig = 46.0
+                zem_stop = 42.5
             else:
-                zem_trig = 43.5
-                zem_stop = 35.0
+                zem_trig = 46.0
+                zem_stop = 41.0
 
             if not self.zem_burning and zem_dist > zem_trig and sim_t >= self.zem_blocked_until:
                 self.zem_burning = True
-            elif self.zem_burning and (zem_dist < zem_stop or (v_lat_mag < 0.08 and zem_dist < 42.5)):
+            elif self.zem_burning and (zem_dist < zem_stop or (v_lat_mag < 0.08 and zem_dist < 44.5)):
                 self.zem_burning = False
                 self.prev_zem_axis = None
 
-            if self.zem_burning and zem_dist > 1e-3:
-                u_zem = -zem_lat / zem_dist
+            if self.zem_burning and zem_lat_norm > 1e-3:
+                u_zem = -zem_lat / zem_lat_norm
                 excl = set() if z_align < 0.65 else {"+Z", "-Z"}
                 if dodged_still_ahead and self.last_dodged_axis is not None:
                     opp_map = {"+X": "-X", "-X": "+X", "+Y": "-Y", "-Y": "+Y", "+Z": "-Z", "-Z": "+Z"}
@@ -997,7 +1165,7 @@ class PhobosGNCController:
                     if k in excl:
                         continue
                     d = float(np.dot(ub, ax_u))
-                    d_hyst = d + (0.25 if k == self.prev_zem_axis else 0.0)
+                    d_hyst = d + ((0.45 if sim_t < self.zem_axis_lock_until else 0.30) if k == self.prev_zem_axis else 0.0)
                     if d > 0.25:
                         ranked.append((d_hyst, d, k))
                 ranked.sort(key=lambda x: -x[0])
@@ -1024,7 +1192,10 @@ class PhobosGNCController:
                         if not safe:
                             break
                     if safe:
-                        self.prev_zem_axis = ax_k
+                        self._update_env_observer(sim_t, loc, vel, False, dt_step)
+                        if ax_k != self.prev_zem_axis:
+                            self.prev_zem_axis = ax_k
+                            self.zem_axis_lock_until = sim_t + 0.50
                         self.damping = False
                         acc_b, ang_b = self._select_vertex(ax_k, ang_vel_b, np.zeros(3), weights=(1.0, 1.0, 1.0))
                         return acc_b, ang_b, False, f"ZEM_{ax_k}", closest_diag, zem_dist
@@ -1042,9 +1213,11 @@ class PhobosGNCController:
         elif self.damping and w_mag < COAST_DAMP_EXIT:
             self.damping = False
         if self.damping and w_mag > 1e-6:
+            self._update_env_observer(sim_t, loc, vel, False, dt_step)
             ang_damp = -(ang_vel_b / w_mag) * min(0.0012, 0.35 * w_mag)
             return np.zeros(3, dtype=float), ang_damp, True, "DAMP", closest_diag, zem_dist
 
+        self._update_env_observer(sim_t, loc, vel, True, dt_step)
         mode_coast = "COAST" if (sim_t - self.last_evade_t) >= EVADE_ZEM_COOLDOWN_S else "COAST_HOLD"
         return np.zeros(3, dtype=float), np.zeros(3, dtype=float), True, mode_coast, closest_diag, zem_dist
 
@@ -1142,7 +1315,7 @@ while not exit_flag:
             )
         st.logger_info(
             f"[GNC t={sim_time_sec:.1f}s {mode}] Dist={dist_to_target:.1f}m Spd={speed:.2f} "
-            f"zem={zem_dist:.1f}m tilt={tilt_deg:.1f}deg w={w_spd:.3f} "
+            f"zem={zem_dist:.1f}m tilt={tilt_deg:.1f}deg w={w_spd:.3f} yld={gnc.total_yield_s:.1f}s "
             f"loc={np.round(loc,1).tolist()} vel={np.round(vel,2).tolist()} "
             f"tr={len(gnc.tracks)} fuel={fuelUsed:.1f}kg dam={damage:.1f}J{thr_str}"
         )

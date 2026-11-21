@@ -37262,7 +37262,7 @@
 				"NoClip": true,
 				"RotateToEntity": [
 					"EntityRef",
-					"Phobos"
+					"SpaceBuggy"
 				],
 				"Rotation": [
 					"doubleV4",
@@ -37393,7 +37393,7 @@
 				"NoClip": true,
 				"RotateToEntity": [
 					"EntityRef",
-					"SpaceBuggy"
+					"Phobos"
 				],
 				"Rotation": [
 					"doubleV4",
