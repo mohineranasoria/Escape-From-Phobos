@@ -218,3 +218,64 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+####################################################################
+### SpaceTeamsPRO / STU4-Solution Rules ############################
+####################################################################
+
+# Visual Studio / C++ / Unreal Engine artifacts (from SimDynamX/STU4-Solution)
+*.VC.db
+*.VC.opendb
+*.slo
+*.lo
+*.o
+*.obj
+*.gch
+*.pch
+*.dylib
+*.dll
+*.dll.manifest
+*.mod
+*.lai
+*.la
+*.a
+*.lib
+*.ilk
+*.pdb
+*.exp
+*.exe
+*.exe.manifest
+*.out
+*.app
+*.ipa
+*.xcodeproj
+*.xcworkspace
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*_BuiltData.uasset
+*.DS_Store
+*/imgui.ini
+*.swp
+TAGS
+*.geobin
+
+# Directories
+**/__pycache__/**
+**/.vs/**
+**/.idea/**
+**/out/build/**
+**/enc_temp_folder/**
+**/.vscode/**
+
+# Large media & binary archives (upload competition videos via Google Drive)
+*.mp4
+*.mov
+*.avi
+*.mkv
+
+# Track verified competition run logs in submission/logs/
+!submission/logs/
+!submission/logs/**
+!submission/logs/**/*.log

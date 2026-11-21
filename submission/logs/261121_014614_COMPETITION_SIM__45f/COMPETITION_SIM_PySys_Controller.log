@@ -1,0 +1,1048 @@
+ - Space Teams Simulation PerProcessInitialization - 
+PerProcessInitialization - Timezone database parsing.
+  TAI now: 2026-11-21T01:46:52.140975Z
+  UTC now: 2026-11-21T01:46:15.143596Z
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: AtomicLogger activated, Sim Run ID: 45fe7e9f-40de-d624-aded-91910b230233
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Eigen SIMD: AVX SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]:      Space Teams Platform Version: 0.55.0 (Release, Win64)
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]:                      Release Date: October 6, 2026
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: ---------- SimState: Loading ----------
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Server Mode: ServerAsLocalClient
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Sim Config: Local/Repos/STU4-Sim/Sims/COMPETITION_SIM.simconf
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Sim Init Time: 2026-05-28 22:40:22.078315 UTC
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: Starting to connect to server at endpoint 127.0.0.1:41194...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]:              = 2026-05-28 22:40:59.078315 TAI
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Seconds past J2000 Epoch: 833280091.262315
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading all Field Effects...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading 4 Vector Field Effects...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Field Effect "Gravity_Sun_Spherical" active: false
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: Connected to server
+
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: The remote @ networkID 1: sent NetAssumptions. Waiting for NetAssumptions to be received as well.
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: The remote @ networkID 1: received NetAssumptions.
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: The remote @ networkID 1: NetAssumptions passed.
+2026-11-21T01:46:15 [INFO]-[PySys_Controller->Server @NID:1]: Connected to server and initialized @ networkID 1
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Field Effect "Gravity_Deimos_Spherical" active: false
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading 0 Scalar Field Effects...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading 0 Matrix Field Effects...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Data_Manager - orderSender Loop Start
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading Ephemeris System...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Done loading Ephemeris System.
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Done loading all Field Effects.
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Loading all Systems...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Done loading all Systems.
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Data_Manager - Order Executor Loop Start
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: ---------- SimState: Lobby ----------
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Waiting for all remotes of this process to connect...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: All remotes of this process have connected.
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Waiting for all remotes of this process to finish Load...
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: All remotes of this process have loaded.
+2026-11-21T01:46:15 [INFO]----[PySys_Controller]: Waiting for Sync to start...
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: Sync Started.
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: ---------- SimState: Sync ----------
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: Running SPICE propagators.
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: Starting SPICE Propagators...
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: Waiting for all remotes of this process to finish Sync...
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: All remotes of this process have synchronized.
+2026-11-21T01:46:18 [INFO]----[PySys_Controller]: Waiting for Init to start...
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: ---------- SimState: Init ----------
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: Initing all Systems...
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: Done initing all Systems.
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: Waiting for all remotes of this process to finish Init...
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: All remotes of this process have finished init.
+2026-11-21T01:46:19 [INFO]----[PySys_Controller]: Waiting for Runtime to start...
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: Received SimStarted order from endpoint at NetworkID 1.
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: ---------- SimState: Runtime (NonBlocking) ----------
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: ---------- SimState: Runtime (Async) ----------
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: Initial Timescale: 1.000000
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: OnScreenAlert: Backend Sim Version: 2026/11/11
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: [GNC t=0.1s CLIMB_Z] Dist=1305.8m Spd=0.00 zem=0.0m tilt=4.3deg w=0.000 loc=[-651.0, 95.2, -8239.7] vel=[0.0, 0.0, 0.0] tr=0 fuel=0.0kg dam=0.0J
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:21 [INFO]----[PySys_Controller]: [GNC] Vertex table synced(mass=3388.70kg,jets=38)
+2026-11-21T01:46:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.0kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.0m/s | Dam: 0.0J | Fuel: 0.4kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.1m/s | Dam: 0.0J | Fuel: 0.5kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.8m | Spd: 0.1m/s | Dam: 0.0J | Fuel: 0.7kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.7m | Spd: 0.2m/s | Dam: 0.0J | Fuel: 0.9kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.7m | Spd: 0.2m/s | Dam: 0.0J | Fuel: 1.0kg | Coast: False
+2026-11-21T01:46:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.7m | Spd: 0.2m/s | Dam: 0.0J | Fuel: 1.2kg | Coast: False
+2026-11-21T01:46:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.6m | Spd: 0.3m/s | Dam: 0.0J | Fuel: 1.4kg | Coast: False
+2026-11-21T01:46:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.5m | Spd: 0.3m/s | Dam: 0.0J | Fuel: 1.5kg | Coast: False
+2026-11-21T01:46:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.5m | Spd: 0.4m/s | Dam: 0.0J | Fuel: 1.7kg | Coast: False
+2026-11-21T01:46:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.4m | Spd: 0.4m/s | Dam: 0.0J | Fuel: 1.8kg | Coast: False
+2026-11-21T01:46:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.3m | Spd: 0.4m/s | Dam: 0.0J | Fuel: 2.0kg | Coast: False
+2026-11-21T01:46:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.2m | Spd: 0.5m/s | Dam: 0.0J | Fuel: 2.1kg | Coast: False
+2026-11-21T01:46:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.1m | Spd: 0.5m/s | Dam: 0.0J | Fuel: 2.3kg | Coast: False
+2026-11-21T01:46:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1305.0m | Spd: 0.6m/s | Dam: 0.0J | Fuel: 2.5kg | Coast: False
+2026-11-21T01:46:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.9m | Spd: 0.6m/s | Dam: 0.0J | Fuel: 2.6kg | Coast: False
+2026-11-21T01:46:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.8m | Spd: 0.6m/s | Dam: 0.0J | Fuel: 2.8kg | Coast: False
+2026-11-21T01:46:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.7m | Spd: 0.6m/s | Dam: 0.0J | Fuel: 2.9kg | Coast: False
+2026-11-21T01:46:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.5m | Spd: 0.7m/s | Dam: 0.0J | Fuel: 3.1kg | Coast: False
+2026-11-21T01:46:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.4m | Spd: 0.7m/s | Dam: 0.0J | Fuel: 3.2kg | Coast: False
+2026-11-21T01:46:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.2m | Spd: 0.8m/s | Dam: 0.0J | Fuel: 3.4kg | Coast: False
+2026-11-21T01:46:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1304.1m | Spd: 0.8m/s | Dam: 0.0J | Fuel: 3.6kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.9m | Spd: 0.8m/s | Dam: 0.0J | Fuel: 3.7kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.7m | Spd: 0.9m/s | Dam: 0.0J | Fuel: 3.9kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: [GNC t=6.2s CLIMB_Z] Dist=1303.6m Spd=0.95 zem=0.0m tilt=2.1deg w=0.033 loc=[-651.1, 95.2, -8241.9] vel=[-0.07, 0.01, -0.95] tr=118 fuel=4.0kg dam=0.0J | NearThr: rel=[42.9, -45.2, -4.3] vR=[-1.95, 0.44, -0.45] R=7.0m tca=19.8s miss=43.9m rsafe=15.4m areq=-0.146 n=2
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.6m | Spd: 0.9m/s | Dam: 0.0J | Fuel: 4.0kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.4m | Spd: 1.0m/s | Dam: 0.0J | Fuel: 4.2kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.2m | Spd: 1.0m/s | Dam: 0.0J | Fuel: 4.4kg | Coast: False
+2026-11-21T01:46:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1303.0m | Spd: 1.0m/s | Dam: 0.0J | Fuel: 4.5kg | Coast: False
+2026-11-21T01:46:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1302.8m | Spd: 1.1m/s | Dam: 0.0J | Fuel: 4.7kg | Coast: False
+2026-11-21T01:46:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1302.6m | Spd: 1.1m/s | Dam: 0.0J | Fuel: 4.8kg | Coast: False
+2026-11-21T01:46:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1302.3m | Spd: 1.2m/s | Dam: 0.0J | Fuel: 5.0kg | Coast: False
+2026-11-21T01:46:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1302.1m | Spd: 1.2m/s | Dam: 0.0J | Fuel: 5.1kg | Coast: False
+2026-11-21T01:46:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1301.9m | Spd: 1.2m/s | Dam: 0.0J | Fuel: 5.3kg | Coast: False
+2026-11-21T01:46:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1301.7m | Spd: 1.3m/s | Dam: 0.0J | Fuel: 5.5kg | Coast: False
+2026-11-21T01:46:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1301.3m | Spd: 1.3m/s | Dam: 0.0J | Fuel: 5.7kg | Coast: False
+2026-11-21T01:46:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1301.1m | Spd: 1.4m/s | Dam: 0.0J | Fuel: 5.8kg | Coast: False
+2026-11-21T01:46:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1300.8m | Spd: 1.4m/s | Dam: 0.0J | Fuel: 6.0kg | Coast: False
+2026-11-21T01:46:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1300.6m | Spd: 1.4m/s | Dam: 0.0J | Fuel: 6.1kg | Coast: False
+2026-11-21T01:46:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1300.3m | Spd: 1.5m/s | Dam: 0.0J | Fuel: 6.3kg | Coast: False
+2026-11-21T01:46:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1300.0m | Spd: 1.5m/s | Dam: 0.0J | Fuel: 6.4kg | Coast: False
+2026-11-21T01:46:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1299.7m | Spd: 1.6m/s | Dam: 0.0J | Fuel: 6.6kg | Coast: False
+2026-11-21T01:46:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1299.4m | Spd: 1.6m/s | Dam: 0.0J | Fuel: 6.7kg | Coast: False
+2026-11-21T01:46:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1299.1m | Spd: 1.6m/s | Dam: 0.0J | Fuel: 6.9kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1298.8m | Spd: 1.7m/s | Dam: 0.0J | Fuel: 7.1kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1298.4m | Spd: 1.7m/s | Dam: 0.0J | Fuel: 7.2kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1298.1m | Spd: 1.8m/s | Dam: 0.0J | Fuel: 7.4kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1297.8m | Spd: 1.8m/s | Dam: 0.0J | Fuel: 7.5kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1297.4m | Spd: 1.8m/s | Dam: 0.0J | Fuel: 7.7kg | Coast: False
+2026-11-21T01:46:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1297.1m | Spd: 1.9m/s | Dam: 0.0J | Fuel: 7.9kg | Coast: False
+2026-11-21T01:46:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1296.7m | Spd: 1.9m/s | Dam: 0.0J | Fuel: 8.0kg | Coast: False
+2026-11-21T01:46:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1296.3m | Spd: 1.9m/s | Dam: 0.0J | Fuel: 8.2kg | Coast: False
+2026-11-21T01:46:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1295.9m | Spd: 2.0m/s | Dam: 0.0J | Fuel: 8.3kg | Coast: False
+2026-11-21T01:46:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1295.6m | Spd: 2.0m/s | Dam: 0.0J | Fuel: 8.5kg | Coast: False
+2026-11-21T01:46:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1295.2m | Spd: 2.0m/s | Dam: 0.0J | Fuel: 8.6kg | Coast: False
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: [GNC t=11.9s CLIMB_Z] Dist=1294.8m Spd=2.07 zem=0.0m tilt=1.1deg w=0.013 loc=[-651.9, 95.3, -8250.7] vel=[-0.23, 0.05, -2.06] tr=122 fuel=8.8kg dam=0.0J | NearThr: rel=[23.3, -46.6, -1.2] vR=[-3.07, 0.56, -0.66] R=6.9m tca=8.3s miss=44.4m rsafe=14.8m areq=-0.860 n=3
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1294.8m | Spd: 2.1m/s | Dam: 0.0J | Fuel: 8.8kg | Coast: False
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1294.4m | Spd: 2.1m/s | Dam: 0.0J | Fuel: 9.0kg | Coast: False
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1294.0m | Spd: 2.2m/s | Dam: 0.0J | Fuel: 9.1kg | Coast: False
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1293.5m | Spd: 2.2m/s | Dam: 0.0J | Fuel: 9.3kg | Coast: False
+2026-11-21T01:46:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1293.1m | Spd: 2.2m/s | Dam: 0.0J | Fuel: 9.4kg | Coast: False
+2026-11-21T01:46:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1292.7m | Spd: 2.3m/s | Dam: 0.0J | Fuel: 9.6kg | Coast: False
+2026-11-21T01:46:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1292.2m | Spd: 2.3m/s | Dam: 0.0J | Fuel: 9.7kg | Coast: False
+2026-11-21T01:46:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1291.7m | Spd: 2.4m/s | Dam: 0.0J | Fuel: 9.9kg | Coast: False
+2026-11-21T01:46:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1291.3m | Spd: 2.4m/s | Dam: 0.0J | Fuel: 10.1kg | Coast: False
+2026-11-21T01:46:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1290.8m | Spd: 2.4m/s | Dam: 0.0J | Fuel: 10.3kg | Coast: False
+2026-11-21T01:46:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1290.4m | Spd: 2.5m/s | Dam: 0.0J | Fuel: 10.4kg | Coast: False
+2026-11-21T01:46:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1289.9m | Spd: 2.5m/s | Dam: 0.0J | Fuel: 10.6kg | Coast: False
+2026-11-21T01:46:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1289.3m | Spd: 2.6m/s | Dam: 0.0J | Fuel: 10.8kg | Coast: False
+2026-11-21T01:46:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1288.9m | Spd: 2.6m/s | Dam: 0.0J | Fuel: 10.9kg | Coast: False
+2026-11-21T01:46:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1288.3m | Spd: 2.6m/s | Dam: 0.0J | Fuel: 11.1kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1287.8m | Spd: 2.7m/s | Dam: 0.0J | Fuel: 11.2kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1287.3m | Spd: 2.7m/s | Dam: 0.0J | Fuel: 11.4kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1286.8m | Spd: 2.7m/s | Dam: 0.0J | Fuel: 11.6kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1286.2m | Spd: 2.8m/s | Dam: 0.0J | Fuel: 11.7kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1285.7m | Spd: 2.8m/s | Dam: 0.0J | Fuel: 11.9kg | Coast: False
+2026-11-21T01:46:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1285.2m | Spd: 2.9m/s | Dam: 0.0J | Fuel: 12.0kg | Coast: False
+2026-11-21T01:46:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1284.6m | Spd: 2.9m/s | Dam: 0.0J | Fuel: 12.2kg | Coast: False
+2026-11-21T01:46:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1284.0m | Spd: 2.9m/s | Dam: 0.0J | Fuel: 12.3kg | Coast: False
+2026-11-21T01:46:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1283.5m | Spd: 3.0m/s | Dam: 0.0J | Fuel: 12.5kg | Coast: False
+2026-11-21T01:46:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1282.9m | Spd: 3.0m/s | Dam: 0.0J | Fuel: 12.7kg | Coast: False
+2026-11-21T01:46:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1282.3m | Spd: 3.1m/s | Dam: 0.0J | Fuel: 12.8kg | Coast: False
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1281.8m | Spd: 3.1m/s | Dam: 0.0J | Fuel: 13.0kg | Coast: False
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1281.1m | Spd: 3.2m/s | Dam: 0.0J | Fuel: 13.2kg | Coast: False
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1280.5m | Spd: 3.2m/s | Dam: 0.0J | Fuel: 13.3kg | Coast: False
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1279.8m | Spd: 3.2m/s | Dam: 0.0J | Fuel: 13.5kg | Coast: False
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: [GNC t=17.7s CLIMB_Z] Dist=1279.2m Spd=3.24 zem=10.8m tilt=1.9deg w=0.016 loc=[-653.8, 95.7, -8266.2] vel=[-0.42, 0.09, -3.22] tr=129 fuel=13.6kg dam=0.0J | NearThr: rel=[27.2, 65.6, -34.5] vR=[-1.02, -0.08, 0.49] R=6.6m tca=9.9s miss=67.7m rsafe=13.2m areq=-1.116 n=4
+2026-11-21T01:46:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1279.2m | Spd: 3.2m/s | Dam: 0.0J | Fuel: 13.6kg | Coast: False
+2026-11-21T01:46:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1278.6m | Spd: 3.3m/s | Dam: 0.0J | Fuel: 13.8kg | Coast: False
+2026-11-21T01:46:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1277.9m | Spd: 3.3m/s | Dam: 0.0J | Fuel: 13.9kg | Coast: False
+2026-11-21T01:46:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1277.2m | Spd: 3.4m/s | Dam: 0.0J | Fuel: 14.1kg | Coast: False
+2026-11-21T01:46:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1276.6m | Spd: 3.4m/s | Dam: 0.0J | Fuel: 14.3kg | Coast: False
+2026-11-21T01:46:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1275.9m | Spd: 3.4m/s | Dam: 0.0J | Fuel: 14.5kg | Coast: False
+2026-11-21T01:46:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1275.3m | Spd: 3.5m/s | Dam: 0.0J | Fuel: 14.6kg | Coast: False
+2026-11-21T01:46:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1274.6m | Spd: 3.5m/s | Dam: 0.0J | Fuel: 14.8kg | Coast: False
+2026-11-21T01:46:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1273.9m | Spd: 3.6m/s | Dam: 0.0J | Fuel: 14.9kg | Coast: False
+2026-11-21T01:46:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1273.2m | Spd: 3.6m/s | Dam: 0.0J | Fuel: 15.1kg | Coast: False
+2026-11-21T01:46:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1272.5m | Spd: 3.6m/s | Dam: 0.0J | Fuel: 15.3kg | Coast: False
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1271.8m | Spd: 3.7m/s | Dam: 0.0J | Fuel: 15.4kg | Coast: False
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1271.1m | Spd: 3.7m/s | Dam: 0.0J | Fuel: 15.6kg | Coast: False
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1270.2m | Spd: 3.7m/s | Dam: 0.0J | Fuel: 15.8kg | Coast: False
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: Sim still running...
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1269.5m | Spd: 3.8m/s | Dam: 0.0J | Fuel: 15.9kg | Coast: False
+2026-11-21T01:46:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1268.8m | Spd: 3.8m/s | Dam: 0.0J | Fuel: 16.1kg | Coast: False
+2026-11-21T01:46:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1268.0m | Spd: 3.9m/s | Dam: 0.0J | Fuel: 16.3kg | Coast: False
+2026-11-21T01:46:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1267.3m | Spd: 3.9m/s | Dam: 0.0J | Fuel: 16.4kg | Coast: False
+2026-11-21T01:46:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1266.4m | Spd: 3.9m/s | Dam: 0.0J | Fuel: 16.6kg | Coast: False
+2026-11-21T01:46:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1265.6m | Spd: 4.0m/s | Dam: 0.0J | Fuel: 16.8kg | Coast: False
+2026-11-21T01:46:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1264.8m | Spd: 4.0m/s | Dam: 0.0J | Fuel: 16.9kg | Coast: False
+2026-11-21T01:46:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1264.1m | Spd: 4.1m/s | Dam: 0.0J | Fuel: 17.1kg | Coast: False
+2026-11-21T01:46:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1263.3m | Spd: 4.1m/s | Dam: 0.0J | Fuel: 17.2kg | Coast: False
+2026-11-21T01:46:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1262.4m | Spd: 4.1m/s | Dam: 0.0J | Fuel: 17.4kg | Coast: False
+2026-11-21T01:46:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1261.6m | Spd: 4.2m/s | Dam: 0.0J | Fuel: 17.6kg | Coast: False
+2026-11-21T01:46:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1260.8m | Spd: 4.2m/s | Dam: 0.0J | Fuel: 17.7kg | Coast: False
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1260.0m | Spd: 4.2m/s | Dam: 0.0J | Fuel: 17.9kg | Coast: False
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1259.1m | Spd: 4.3m/s | Dam: 0.0J | Fuel: 18.1kg | Coast: False
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1258.2m | Spd: 4.3m/s | Dam: 0.0J | Fuel: 18.2kg | Coast: False
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1257.4m | Spd: 4.4m/s | Dam: 0.0J | Fuel: 18.4kg | Coast: False
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: [GNC t=23.6s CLIMB_Z] Dist=1256.5m Spd=4.39 zem=16.9m tilt=1.4deg w=0.016 loc=[-656.9, 96.4, -8288.6] vel=[-0.61, 0.12, -4.35] tr=125 fuel=18.5kg dam=0.0J | NearThr: rel=[24.2, 66.8, -10.3] vR=[-1.04, -0.01, 0.5] R=6.6m tca=2.8s miss=70.4m rsafe=12.3m areq=-14.435 n=5
+2026-11-21T01:46:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1256.5m | Spd: 4.4m/s | Dam: 0.0J | Fuel: 18.5kg | Coast: False
+2026-11-21T01:46:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1255.6m | Spd: 4.4m/s | Dam: 0.0J | Fuel: 18.7kg | Coast: False
+2026-11-21T01:46:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1254.8m | Spd: 4.5m/s | Dam: 0.0J | Fuel: 18.9kg | Coast: False
+2026-11-21T01:46:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1253.9m | Spd: 4.5m/s | Dam: 0.0J | Fuel: 19.0kg | Coast: False
+2026-11-21T01:46:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1253.0m | Spd: 4.6m/s | Dam: 0.0J | Fuel: 19.2kg | Coast: False
+2026-11-21T01:46:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1252.1m | Spd: 4.6m/s | Dam: 0.0J | Fuel: 19.4kg | Coast: False
+2026-11-21T01:46:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1251.2m | Spd: 4.6m/s | Dam: 0.0J | Fuel: 19.6kg | Coast: False
+2026-11-21T01:46:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1250.2m | Spd: 4.7m/s | Dam: 0.0J | Fuel: 19.7kg | Coast: False
+2026-11-21T01:46:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1249.4m | Spd: 4.7m/s | Dam: 0.0J | Fuel: 19.9kg | Coast: False
+2026-11-21T01:46:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1248.3m | Spd: 4.8m/s | Dam: 0.0J | Fuel: 20.1kg | Coast: False
+2026-11-21T01:46:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1247.4m | Spd: 4.8m/s | Dam: 0.0J | Fuel: 20.2kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1246.4m | Spd: 4.8m/s | Dam: 0.0J | Fuel: 20.4kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1245.5m | Spd: 4.9m/s | Dam: 0.0J | Fuel: 20.5kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1244.5m | Spd: 4.9m/s | Dam: 0.0J | Fuel: 20.7kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1243.6m | Spd: 5.0m/s | Dam: 0.0J | Fuel: 20.9kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1242.5m | Spd: 5.0m/s | Dam: 0.0J | Fuel: 21.0kg | Coast: False
+2026-11-21T01:46:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1241.5m | Spd: 5.0m/s | Dam: 0.0J | Fuel: 21.2kg | Coast: False
+2026-11-21T01:46:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1240.6m | Spd: 5.1m/s | Dam: 0.0J | Fuel: 21.3kg | Coast: False
+2026-11-21T01:46:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1239.6m | Spd: 5.1m/s | Dam: 0.0J | Fuel: 21.5kg | Coast: False
+2026-11-21T01:46:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1238.5m | Spd: 5.2m/s | Dam: 0.0J | Fuel: 21.7kg | Coast: False
+2026-11-21T01:46:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1237.5m | Spd: 5.2m/s | Dam: 0.0J | Fuel: 21.8kg | Coast: False
+2026-11-21T01:46:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1236.4m | Spd: 5.2m/s | Dam: 0.0J | Fuel: 22.0kg | Coast: False
+2026-11-21T01:46:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1235.4m | Spd: 5.3m/s | Dam: 0.0J | Fuel: 22.2kg | Coast: False
+2026-11-21T01:46:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1234.4m | Spd: 5.3m/s | Dam: 0.0J | Fuel: 22.3kg | Coast: False
+2026-11-21T01:46:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1233.4m | Spd: 5.3m/s | Dam: 0.0J | Fuel: 22.5kg | Coast: False
+2026-11-21T01:46:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1232.1m | Spd: 5.4m/s | Dam: 0.0J | Fuel: 22.7kg | Coast: False
+2026-11-21T01:46:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1231.1m | Spd: 5.4m/s | Dam: 0.0J | Fuel: 22.9kg | Coast: False
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1230.0m | Spd: 5.5m/s | Dam: 0.0J | Fuel: 23.0kg | Coast: False
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1229.0m | Spd: 5.5m/s | Dam: 0.0J | Fuel: 23.2kg | Coast: False
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1227.8m | Spd: 5.5m/s | Dam: 0.0J | Fuel: 23.3kg | Coast: False
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: [GNC t=29.5s CLIMB_Z] Dist=1226.6m Spd=5.59 zem=23.4m tilt=1.2deg w=0.028 loc=[-661.2, 97.2, -8318.2] vel=[-0.81, 0.17, -5.53] tr=137 fuel=23.5kg dam=0.0J | NearThr: rel=[31.7, -2.6, -144.9] vR=[-2.69, 0.9, 0.13] R=13.2m tca=22.1s miss=15.5m rsafe=19.9m areq=0.018 n=7
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1226.6m | Spd: 5.6m/s | Dam: 0.0J | Fuel: 23.5kg | Coast: False
+2026-11-21T01:46:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1225.5m | Spd: 5.6m/s | Dam: 0.0J | Fuel: 23.7kg | Coast: False
+2026-11-21T01:46:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1224.3m | Spd: 5.7m/s | Dam: 0.0J | Fuel: 23.9kg | Coast: False
+2026-11-21T01:46:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1223.1m | Spd: 5.7m/s | Dam: 0.0J | Fuel: 24.0kg | Coast: False
+2026-11-21T01:46:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1221.9m | Spd: 5.7m/s | Dam: 0.0J | Fuel: 24.2kg | Coast: False
+2026-11-21T01:46:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1220.6m | Spd: 5.8m/s | Dam: 0.0J | Fuel: 24.4kg | Coast: False
+2026-11-21T01:46:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1219.5m | Spd: 5.8m/s | Dam: 0.0J | Fuel: 24.6kg | Coast: False
+2026-11-21T01:46:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1218.3m | Spd: 5.9m/s | Dam: 0.0J | Fuel: 24.7kg | Coast: False
+2026-11-21T01:46:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1217.2m | Spd: 5.9m/s | Dam: 0.0J | Fuel: 24.9kg | Coast: False
+2026-11-21T01:46:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1216.0m | Spd: 5.9m/s | Dam: 0.0J | Fuel: 25.0kg | Coast: False
+2026-11-21T01:46:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1214.8m | Spd: 6.0m/s | Dam: 0.0J | Fuel: 25.2kg | Coast: False
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1213.7m | Spd: 6.0m/s | Dam: 0.0J | Fuel: 25.4kg | Coast: False
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1212.5m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 25.5kg | Coast: False
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1211.3m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 25.7kg | Coast: False
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: [GNC t=32.2s EVADE_+X] Dist=1211.0m Spd=6.10 zem=23.6m tilt=0.8deg w=0.021 loc=[-663.5, 97.7, -8333.6] vel=[-0.9, 0.18, -6.03] tr=138 fuel=25.7kg dam=0.0J | NearThr: rel=[24.7, -5.5, -129.9] vR=[-2.84, 0.52, 0.11] R=13.1m tca=18.8s miss=10.3m rsafe=19.8m areq=0.054 n=8
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1210.0m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 25.9kg | Coast: False
+2026-11-21T01:46:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1208.7m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.1kg | Coast: False
+2026-11-21T01:46:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1207.5m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.2kg | Coast: False
+2026-11-21T01:46:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1206.3m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.4kg | Coast: False
+2026-11-21T01:46:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1205.1m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.5kg | Coast: False
+2026-11-21T01:46:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1204.0m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.7kg | Coast: False
+2026-11-21T01:46:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1202.5m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 26.9kg | Coast: False
+2026-11-21T01:46:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1201.3m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.1kg | Coast: False
+2026-11-21T01:46:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1200.1m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.2kg | Coast: False
+2026-11-21T01:46:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1198.9m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.4kg | Coast: False
+2026-11-21T01:46:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1197.7m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.5kg | Coast: False
+2026-11-21T01:46:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1196.3m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.8kg | Coast: False
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1195.2m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 27.9kg | Coast: False
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: [GNC t=34.9s CLIMB_Z] Dist=1194.6m Spd=6.13 zem=132.8m tilt=1.4deg w=0.009 loc=[-665.2, 98.5, -8350.0] vel=[-0.38, 0.37, -6.11] tr=143 fuel=28.0kg dam=0.0J | NearThr: rel=[18.7, -4.9, -113.2] vR=[-2.84, 0.52, 0.14] R=13.1m tca=15.7s miss=19.9m rsafe=19.8m areq=-0.001 n=8
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1194.0m | Spd: 6.1m/s | Dam: 0.0J | Fuel: 28.1kg | Coast: False
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1192.9m | Spd: 6.2m/s | Dam: 0.0J | Fuel: 28.2kg | Coast: False
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1191.7m | Spd: 6.2m/s | Dam: 0.0J | Fuel: 28.4kg | Coast: False
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: [GNC t=35.6s CLIMB_Z] Dist=1190.3m Spd=6.25 zem=134.0m tilt=1.3deg w=0.025 loc=[-665.4, 98.8, -8354.3] vel=[-0.37, 0.38, -6.23] tr=145 fuel=28.6kg dam=0.0J | NearThr: rel=[17.0, -4.8, -108.8] vR=[-2.84, 0.52, 0.14] R=13.1m tca=14.9s miss=19.8m rsafe=19.8m areq=0.001 n=8
+2026-11-21T01:46:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1190.3m | Spd: 6.2m/s | Dam: 0.0J | Fuel: 28.6kg | Coast: False
+2026-11-21T01:46:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1189.1m | Spd: 6.3m/s | Dam: 0.0J | Fuel: 28.7kg | Coast: False
+2026-11-21T01:46:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1187.9m | Spd: 6.3m/s | Dam: 0.0J | Fuel: 28.9kg | Coast: False
+2026-11-21T01:46:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1186.7m | Spd: 6.4m/s | Dam: 0.0J | Fuel: 29.1kg | Coast: False
+2026-11-21T01:46:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1185.4m | Spd: 6.4m/s | Dam: 0.0J | Fuel: 29.2kg | Coast: False
+2026-11-21T01:46:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1184.1m | Spd: 6.4m/s | Dam: 0.0J | Fuel: 29.4kg | Coast: False
+2026-11-21T01:46:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1182.8m | Spd: 6.5m/s | Dam: 0.0J | Fuel: 29.5kg | Coast: False
+2026-11-21T01:46:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1181.6m | Spd: 6.5m/s | Dam: 0.0J | Fuel: 29.7kg | Coast: False
+2026-11-21T01:46:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1180.3m | Spd: 6.5m/s | Dam: 0.0J | Fuel: 29.9kg | Coast: False
+2026-11-21T01:46:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1179.1m | Spd: 6.6m/s | Dam: 0.0J | Fuel: 30.0kg | Coast: False
+2026-11-21T01:46:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1177.7m | Spd: 6.6m/s | Dam: 0.0J | Fuel: 30.2kg | Coast: False
+2026-11-21T01:46:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1176.3m | Spd: 6.7m/s | Dam: 0.0J | Fuel: 30.4kg | Coast: False
+2026-11-21T01:46:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1175.0m | Spd: 6.7m/s | Dam: 0.0J | Fuel: 30.5kg | Coast: False
+2026-11-21T01:46:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1173.7m | Spd: 6.7m/s | Dam: 0.0J | Fuel: 30.7kg | Coast: False
+2026-11-21T01:46:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1172.3m | Spd: 6.8m/s | Dam: 0.0J | Fuel: 30.9kg | Coast: False
+2026-11-21T01:46:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1171.1m | Spd: 6.8m/s | Dam: 0.0J | Fuel: 31.0kg | Coast: False
+2026-11-21T01:46:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1169.5m | Spd: 6.9m/s | Dam: 0.0J | Fuel: 31.2kg | Coast: False
+2026-11-21T01:46:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1168.1m | Spd: 6.9m/s | Dam: 0.0J | Fuel: 31.4kg | Coast: False
+2026-11-21T01:46:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1166.8m | Spd: 7.0m/s | Dam: 0.0J | Fuel: 31.5kg | Coast: False
+2026-11-21T01:46:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1165.4m | Spd: 7.0m/s | Dam: 0.0J | Fuel: 31.7kg | Coast: False
+2026-11-21T01:46:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1164.0m | Spd: 7.0m/s | Dam: 0.0J | Fuel: 31.9kg | Coast: False
+2026-11-21T01:47:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1162.3m | Spd: 7.1m/s | Dam: 0.0J | Fuel: 32.1kg | Coast: False
+2026-11-21T01:47:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1161.0m | Spd: 7.1m/s | Dam: 0.0J | Fuel: 32.2kg | Coast: False
+2026-11-21T01:47:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1159.6m | Spd: 7.2m/s | Dam: 0.0J | Fuel: 32.4kg | Coast: False
+2026-11-21T01:47:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1158.2m | Spd: 7.2m/s | Dam: 0.0J | Fuel: 32.6kg | Coast: False
+2026-11-21T01:47:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1156.7m | Spd: 7.2m/s | Dam: 0.0J | Fuel: 32.7kg | Coast: False
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1155.2m | Spd: 7.3m/s | Dam: 0.0J | Fuel: 32.9kg | Coast: False
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1153.7m | Spd: 7.3m/s | Dam: 0.0J | Fuel: 33.1kg | Coast: False
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1152.3m | Spd: 7.4m/s | Dam: 0.0J | Fuel: 33.2kg | Coast: False
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1150.8m | Spd: 7.4m/s | Dam: 0.0J | Fuel: 33.4kg | Coast: False
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: [GNC t=41.6s CLIMB_Z] Dist=1149.4m Spd=7.44 zem=106.0m tilt=1.4deg w=0.005 loc=[-668.3, 101.1, -8395.3] vel=[-0.58, 0.41, -7.41] tr=156 fuel=33.6kg dam=0.0J | NearThr: rel=[-1.4, -3.9, -65.1] vR=[-2.96, 0.47, 0.61] R=13.1m tca=7.2s miss=19.4m rsafe=19.5m areq=0.005 n=10
+2026-11-21T01:47:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1149.4m | Spd: 7.4m/s | Dam: 0.0J | Fuel: 33.6kg | Coast: False
+2026-11-21T01:47:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1147.7m | Spd: 7.5m/s | Dam: 0.0J | Fuel: 33.8kg | Coast: False
+2026-11-21T01:47:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1146.2m | Spd: 7.6m/s | Dam: 0.0J | Fuel: 33.9kg | Coast: False
+2026-11-21T01:47:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1144.8m | Spd: 7.6m/s | Dam: 0.0J | Fuel: 34.1kg | Coast: False
+2026-11-21T01:47:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1143.4m | Spd: 7.6m/s | Dam: 0.0J | Fuel: 34.2kg | Coast: False
+2026-11-21T01:47:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1141.8m | Spd: 7.6m/s | Dam: 0.0J | Fuel: 34.4kg | Coast: False
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1140.0m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 34.6kg | Coast: False
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1138.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 34.8kg | Coast: False
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: [GNC t=43.2s EVADE_+X] Dist=1137.0m Spd=7.79 zem=101.0m tilt=1.7deg w=0.016 loc=[-669.3, 101.7, -8407.6] vel=[-0.63, 0.42, -7.75] tr=164 fuel=34.9kg dam=0.0J | NearThr: rel=[-5.1, -3.8, -51.7] vR=[-2.96, 0.47, 0.63] R=13.1m tca=5.5s miss=18.7m rsafe=19.5m areq=0.051 n=10
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1137.0m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 34.9kg | Coast: False
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1135.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 35.1kg | Coast: False
+2026-11-21T01:47:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1134.1m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 35.2kg | Coast: False
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1132.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 35.4kg | Coast: False
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: [GNC t=43.9s CLIMB_Z] Dist=1131.5m Spd=7.82 zem=121.7m tilt=1.9deg w=0.014 loc=[-669.7, 102.1, -8413.1] vel=[-0.51, 0.47, -7.79] tr=165 fuel=35.5kg dam=0.0J | NearThr: rel=[-6.9, -3.8, -45.7] vR=[-2.96, 0.47, 0.64] R=13.1m tca=4.7s miss=19.4m rsafe=19.4m areq=-0.004 n=10
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1130.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 35.6kg | Coast: False
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1129.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 35.7kg | Coast: False
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1127.7m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 35.9kg | Coast: False
+2026-11-21T01:47:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1126.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 36.1kg | Coast: False
+2026-11-21T01:47:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1124.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 36.3kg | Coast: False
+2026-11-21T01:47:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1122.9m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 36.4kg | Coast: False
+2026-11-21T01:47:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1121.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 36.6kg | Coast: False
+2026-11-21T01:47:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1119.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 36.7kg | Coast: False
+2026-11-21T01:47:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1118.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 36.9kg | Coast: False
+2026-11-21T01:47:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1116.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 37.1kg | Coast: False
+2026-11-21T01:47:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1114.8m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 37.3kg | Coast: False
+2026-11-21T01:47:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1113.2m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 37.4kg | Coast: False
+2026-11-21T01:47:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1111.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 37.6kg | Coast: False
+2026-11-21T01:47:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1110.0m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 37.7kg | Coast: False
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1108.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 37.9kg | Coast: False
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1106.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 38.1kg | Coast: False
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1104.9m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 38.2kg | Coast: False
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1103.3m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 38.4kg | Coast: False
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: [GNC t=47.6s CLIMB_Z] Dist=1101.6m Spd=8.53 zem=113.7m tilt=1.7deg w=0.004 loc=[-671.7, 103.9, -8443.1] vel=[-0.61, 0.5, -8.49] tr=180 fuel=38.6kg dam=0.0J | NearThr: rel=[-16.8, -0.8, -12.8] vR=[-3.04, 0.68, 0.48] R=13.0m tca=0.9s miss=19.6m rsafe=18.4m areq=-3.253 n=11
+2026-11-21T01:47:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1101.6m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 38.6kg | Coast: False
+2026-11-21T01:47:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1099.8m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 38.7kg | Coast: False
+2026-11-21T01:47:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1098.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 38.9kg | Coast: False
+2026-11-21T01:47:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1096.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 39.1kg | Coast: False
+2026-11-21T01:47:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1094.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 39.2kg | Coast: False
+2026-11-21T01:47:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1093.0m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 39.4kg | Coast: False
+2026-11-21T01:47:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1091.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 39.5kg | Coast: False
+2026-11-21T01:47:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1089.3m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 39.8kg | Coast: False
+2026-11-21T01:47:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1087.6m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 39.9kg | Coast: False
+2026-11-21T01:47:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1085.8m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 40.1kg | Coast: False
+2026-11-21T01:47:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1084.2m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 40.2kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1082.5m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 40.4kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1080.4m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 40.6kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1078.7m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 40.8kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1076.9m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 40.9kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1075.1m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 41.1kg | Coast: False
+2026-11-21T01:47:10 [INFO]----[PySys_Controller]: [GNC t=50.7s ZEM_-X] Dist=1074.4m Spd=9.14 zem=105.9m tilt=1.8deg w=0.013 loc=[-673.7, 105.5, -8470.3] vel=[-0.71, 0.53, -9.1] tr=187 fuel=41.2kg dam=0.0J | NearThr: rel=[16.3, -14.3, -8.6] vR=[-0.68, -0.97, -0.05] R=10.2m tca=0.7s miss=22.5m rsafe=15.6m areq=-31.430 n=12
+2026-11-21T01:47:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1073.3m | Spd: 9.2m/s | Dam: 0.0J | Fuel: 41.2kg | Coast: False
+2026-11-21T01:47:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1071.4m | Spd: 9.2m/s | Dam: 0.0J | Fuel: 41.4kg | Coast: False
+2026-11-21T01:47:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1069.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 41.6kg | Coast: False
+2026-11-21T01:47:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1067.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 41.7kg | Coast: False
+2026-11-21T01:47:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1066.0m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 41.9kg | Coast: False
+2026-11-21T01:47:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1064.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.1kg | Coast: False
+2026-11-21T01:47:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1062.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.3kg | Coast: False
+2026-11-21T01:47:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1060.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.4kg | Coast: False
+2026-11-21T01:47:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1058.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.6kg | Coast: False
+2026-11-21T01:47:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1056.8m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.8kg | Coast: False
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1055.1m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 42.9kg | Coast: False
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1053.0m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.1kg | Coast: False
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1051.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.3kg | Coast: False
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: [GNC t=53.3s COAST] Dist=1049.9m Spd=9.09 zem=39.3m tilt=2.2deg w=0.004 loc=[-676.3, 106.6, -8494.6] vel=[-1.22, 0.33, -9.0] tr=199 fuel=43.4kg dam=0.0J | NearThr: rel=[-12.3, 21.1, -234.1] vR=[-2.37, 0.17, 1.43] R=12.5m tca=22.1s miss=41.6m rsafe=21.0m areq=-0.084 n=3
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1049.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: [GNC t=53.6s COAST] Dist=1047.6m Spd=9.09 zem=36.5m tilt=2.2deg w=0.004 loc=[-676.6, 106.7, -8496.9] vel=[-1.24, 0.32, -9.0] tr=199 fuel=43.4kg dam=0.0J | NearThr: rel=[-12.6, 21.0, -231.5] vR=[-2.37, 0.17, 1.43] R=12.5m tca=21.8s miss=41.2m rsafe=21.0m areq=-0.085 n=3
+2026-11-21T01:47:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1047.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1046.0m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1043.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1042.0m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1040.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1038.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1036.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1034.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1032.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1030.9m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1029.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1027.3m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1025.5m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: True
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: [GNC t=56.2s EVADE_+X] Dist=1024.1m Spd=9.06 zem=37.0m tilt=2.6deg w=0.004 loc=[-679.8, 107.5, -8520.2] vel=[-1.24, 0.32, -8.97] tr=202 fuel=43.4kg dam=0.0J | NearThr: rel=[5.6, 29.9, -228.9] vR=[-2.87, -0.41, 0.16] R=19.7m tca=24.5s miss=36.9m rsafe=46.9m areq=0.033 n=4
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1023.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.4kg | Coast: False
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1021.9m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.6kg | Coast: False
+2026-11-21T01:47:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1020.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.7kg | Coast: False
+2026-11-21T01:47:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1018.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 43.9kg | Coast: False
+2026-11-21T01:47:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1016.8m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.1kg | Coast: False
+2026-11-21T01:47:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1014.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.3kg | Coast: False
+2026-11-21T01:47:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1012.9m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.4kg | Coast: False
+2026-11-21T01:47:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1011.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.6kg | Coast: False
+2026-11-21T01:47:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1009.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.7kg | Coast: False
+2026-11-21T01:47:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1007.6m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 44.9kg | Coast: False
+2026-11-21T01:47:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1005.5m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.1kg | Coast: False
+2026-11-21T01:47:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1003.7m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.3kg | Coast: False
+2026-11-21T01:47:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1002.0m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.4kg | Coast: False
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 1000.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.6kg | Coast: False
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: [GNC t=59.0s COAST_HOLD] Dist=998.9m Spd=9.07 zem=101.0m tilt=3.1deg w=0.004 loc=[-682.5, 108.7, -8545.3] vel=[-0.71, 0.51, -9.03] tr=208 fuel=45.7kg dam=0.0J | NearThr: rel=[0.3, 27.6, -203.3] vR=[-2.87, -0.41, 0.18] R=19.7m tca=21.0s miss=46.9m rsafe=46.9m areq=-0.000 n=4
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 998.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 996.5m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 994.8m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: [GNC t=59.6s COAST_HOLD] Dist=992.9m Spd=9.07 zem=103.5m tilt=3.2deg w=0.004 loc=[-683.0, 109.0, -8551.3] vel=[-0.69, 0.52, -9.03] tr=211 fuel=45.7kg dam=0.0J | NearThr: rel=[-1.2, 27.0, -197.2] vR=[-2.87, -0.41, 0.19] R=19.7m tca=20.3s miss=47.3m rsafe=46.9m areq=-0.002 n=4
+2026-11-21T01:47:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 992.9m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 991.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 989.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 987.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 985.5m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 983.8m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 982.1m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 980.2m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 978.4m | Spd: 9.1m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 976.5m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 974.8m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 973.0m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 971.3m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 969.1m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 967.4m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 965.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 963.9m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 962.2m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: [GNC t=63.2s COAST] Dist=961.2m Spd=9.03 zem=104.2m tilt=3.7deg w=0.004 loc=[-685.4, 110.8, -8583.0] vel=[-0.68, 0.51, -8.99] tr=221 fuel=45.7kg dam=0.0J | NearThr: rel=[-14.2, 22.7, -161.9] vR=[-3.22, -0.46, 0.25] R=19.2m tca=16.0s miss=57.1m rsafe=49.9m areq=-0.056 n=5
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 960.2m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 958.4m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 956.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 954.9m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 953.2m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 951.4m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 949.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 947.7m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 946.0m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 944.2m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 942.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 940.5m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: [GNC t=65.7s COAST] Dist=938.8m Spd=9.00 zem=104.7m tilt=4.1deg w=0.004 loc=[-687.0, 112.1, -8605.5] vel=[-0.67, 0.51, -8.96] tr=222 fuel=45.7kg dam=0.0J | NearThr: rel=[-22.0, 19.5, -139.9] vR=[-3.32, -0.51, 0.2] R=19.2m tca=13.5s miss=60.3m rsafe=49.8m areq=-0.115 n=6
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 938.8m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.7kg | Coast: True
+2026-11-21T01:47:25 [INFO]----[PySys_Controller]: [GNC t=65.7s ZEM_-X] Dist=938.5m Spd=9.00 zem=104.7m tilt=4.1deg w=0.004 loc=[-687.1, 112.1, -8605.8] vel=[-0.67, 0.51, -8.96] tr=222 fuel=45.7kg dam=0.0J | NearThr: rel=[-22.1, 19.4, -139.6] vR=[-3.32, -0.51, 0.2] R=19.2m tca=13.5s miss=60.3m rsafe=49.8m areq=-0.116 n=6
+2026-11-21T01:47:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 937.1m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 45.8kg | Coast: False
+2026-11-21T01:47:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 935.3m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.0kg | Coast: False
+2026-11-21T01:47:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 933.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.2kg | Coast: False
+2026-11-21T01:47:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 931.6m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.3kg | Coast: False
+2026-11-21T01:47:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 929.9m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.5kg | Coast: False
+2026-11-21T01:47:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 928.2m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.7kg | Coast: False
+2026-11-21T01:47:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 926.4m | Spd: 9.0m/s | Dam: 0.0J | Fuel: 46.8kg | Coast: False
+2026-11-21T01:47:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 924.7m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.0kg | Coast: False
+2026-11-21T01:47:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 922.7m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.2kg | Coast: False
+2026-11-21T01:47:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 921.0m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.3kg | Coast: False
+2026-11-21T01:47:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 919.1m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.5kg | Coast: False
+2026-11-21T01:47:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 917.5m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.7kg | Coast: False
+2026-11-21T01:47:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 915.7m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 47.8kg | Coast: False
+2026-11-21T01:47:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 913.7m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.0kg | Coast: False
+2026-11-21T01:47:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 912.0m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.2kg | Coast: False
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: [GNC t=68.8s COAST] Dist=910.6m Spd=8.89 zem=39.0m tilt=4.7deg w=0.004 loc=[-690.1, 113.4, -8633.6] vel=[-1.25, 0.31, -8.8] tr=223 fuel=48.3kg dam=0.0J | NearThr: rel=[-29.5, 16.6, -111.1] vR=[-3.32, -0.51, 0.23] R=19.2m tca=11.1s miss=54.2m rsafe=49.7m areq=-0.072 n=6
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 910.2m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 908.5m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 906.8m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 904.8m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 903.1m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 901.3m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 899.6m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 897.8m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 896.0m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 894.2m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 892.5m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 890.7m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 889.0m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 887.5m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: [GNC t=71.7s COAST] Dist=885.4m Spd=8.86 zem=37.2m tilt=5.3deg w=0.005 loc=[-693.6, 114.2, -8658.5] vel=[-1.26, 0.3, -8.76] tr=225 fuel=48.3kg dam=0.0J | NearThr: rel=[-12.0, -35.1, -68.4] vR=[0.01, -0.07, 0.11] R=18.7m tca=7.6s miss=38.0m rsafe=27.7m areq=-0.357 n=8
+2026-11-21T01:47:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 885.4m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 883.8m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 882.0m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 880.3m | Spd: 8.9m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 878.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 876.5m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 874.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 873.1m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 871.5m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 869.7m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 867.9m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 866.1m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 864.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 862.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 861.0m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 859.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 857.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 855.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 854.0m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 852.3m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 850.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 848.7m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 847.0m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 845.3m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 843.6m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 841.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 840.1m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 838.3m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 836.6m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 835.0m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: [GNC t=77.6s COAST] Dist=832.9m Spd=8.79 zem=38.1m tilt=6.5deg w=0.005 loc=[-701.0, 116.0, -8710.5] vel=[-1.24, 0.29, -8.7] tr=218 fuel=48.3kg dam=0.0J | NearThr: rel=[-2.9, -41.0, -14.7] vR=[0.15, 0.02, 0.47] R=18.7m tca=1.5s miss=41.5m rsafe=25.8m areq=-14.103 n=9
+2026-11-21T01:47:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 832.9m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 831.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 829.5m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 827.9m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 826.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 824.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 822.5m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 820.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 819.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 817.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 815.6m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 813.8m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 812.2m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 810.6m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 808.9m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 807.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 805.4m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 803.7m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: Sim still running...
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 802.0m | Spd: 8.8m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 800.4m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 798.4m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 796.6m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 794.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 793.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 791.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 789.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 787.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 786.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 784.5m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 783.0m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: [GNC t=83.6s COAST] Dist=780.9m Spd=8.72 zem=38.9m tilt=7.7deg w=0.005 loc=[-708.3, 117.7, -8762.0] vel=[-1.22, 0.29, -8.63] tr=212 fuel=48.3kg dam=0.0J | NearThr: rel=[-9.5, -34.8, -112.4] vR=[-2.09, 0.32, 0.58] R=10.4m tca=12.0s miss=39.9m rsafe=17.0m areq=-0.317 n=6
+2026-11-21T01:47:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 780.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 779.3m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 777.5m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 775.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 774.3m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 772.5m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 770.4m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 768.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 767.1m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 765.3m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 763.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 761.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 760.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 758.6m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 756.8m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 755.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 753.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 751.6m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 749.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 748.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 746.6m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 744.9m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 743.1m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 741.3m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 739.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 738.1m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 736.2m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 734.5m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 732.8m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 731.1m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: [GNC t=89.5s COAST] Dist=729.4m Spd=8.66 zem=39.7m tilt=8.9deg w=0.005 loc=[-715.5, 119.4, -8813.1] vel=[-1.2, 0.29, -8.57] tr=209 fuel=48.3kg dam=0.0J | NearThr: rel=[-12.3, -36.8, -56.3] vR=[-1.97, 0.19, 0.67] R=10.4m tca=5.9s miss=41.0m rsafe=16.8m areq=-1.391 n=7
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 729.4m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 727.7m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 726.0m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 724.3m | Spd: 8.7m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 722.6m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 720.9m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 719.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 717.5m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 715.8m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 714.2m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 712.5m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 710.8m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 708.9m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 707.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 705.6m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 704.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 702.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 700.5m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 698.8m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 697.2m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 695.5m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 693.8m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 692.1m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 690.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 688.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 687.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 685.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 683.8m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 681.9m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 680.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: [GNC t=95.4s COAST] Dist=678.7m Spd=8.59 zem=40.5m tilt=10.1deg w=0.005 loc=[-722.5, 121.1, -8863.4] vel=[-1.18, 0.28, -8.51] tr=203 fuel=48.3kg dam=0.0J | NearThr: rel=[13.1, 54.0, 5.3] vR=[-2.48, -0.57, 0.6] R=6.4m tca=0.2s miss=55.8m rsafe=11.8m areq=-351.513 n=8
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 678.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 677.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 675.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 673.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 672.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 670.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 668.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 667.1m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 665.3m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 663.6m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 661.9m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 660.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 658.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 657.0m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 655.1m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 653.4m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 651.9m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 650.2m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 648.6m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 646.7m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 645.1m | Spd: 8.6m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 643.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:47:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 641.8m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 640.3m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 638.4m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 636.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 635.0m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 633.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 631.8m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 629.9m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: [GNC t=101.3s COAST] Dist=628.2m Spd=8.53 zem=41.2m tilt=11.3deg w=0.005 loc=[-729.4, 122.7, -8913.5] vel=[-1.17, 0.28, -8.45] tr=195 fuel=48.3kg dam=0.0J | NearThr: rel=[36.4, -36.3, -118.4] vR=[-0.26, -0.71, 1.27] R=12.5m tca=11.2s miss=67.1m rsafe=19.1m areq=-0.760 n=5
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 628.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 626.6m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 625.0m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 623.4m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 621.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 619.8m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 618.1m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 616.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 614.9m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 613.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 611.4m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 609.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 608.0m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 606.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 605.0m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 603.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 601.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 599.8m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 598.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 596.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 594.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 593.0m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 591.4m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 589.9m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 588.3m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 586.6m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 584.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 583.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 581.6m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 579.9m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: [GNC t=107.2s COAST] Dist=578.3m Spd=8.47 zem=41.9m tilt=12.4deg w=0.005 loc=[-736.2, 124.3, -8963.0] vel=[-1.15, 0.28, -8.38] tr=179 fuel=48.3kg dam=0.0J | NearThr: rel=[50.8, 44.9, -195.1] vR=[-1.35, -1.04, 1.04] R=7.4m tca=21.1s miss=49.7m rsafe=15.9m areq=-0.153 n=3
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 578.3m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 576.3m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 574.7m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 573.1m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 571.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 570.1m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 568.2m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 566.5m | Spd: 8.5m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 564.9m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 563.3m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 561.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 560.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 558.2m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 556.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 555.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 553.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 551.9m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 550.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 548.3m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 546.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 545.2m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 543.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 541.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 540.2m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 538.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 537.1m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 535.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 533.7m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 532.1m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 530.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: [GNC t=113.1s COAST] Dist=528.9m Spd=8.40 zem=42.5m tilt=13.5deg w=0.005 loc=[-742.8, 125.9, -9012.1] vel=[-1.13, 0.27, -8.32] tr=161 fuel=48.3kg dam=0.0J | NearThr: rel=[48.2, 43.6, -141.0] vR=[-1.47, -0.64, 1.13] R=7.8m tca=15.4s miss=52.3m rsafe=14.5m areq=-0.320 n=4
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 528.9m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 527.3m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 525.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 523.9m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 522.3m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 520.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 519.2m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 517.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 515.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 514.2m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 512.7m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 511.1m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 509.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 507.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 506.1m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 504.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 503.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 501.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 499.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 498.1m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 496.6m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 495.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 493.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 491.8m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 490.0m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 488.5m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 486.9m | Spd: 8.4m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 485.3m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 483.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 482.0m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.3kg | Coast: True
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: [GNC t=118.7s ZEM_-X] Dist=481.7m Spd=8.34 zem=43.0m tilt=14.5deg w=0.005 loc=[-749.1, 127.4, -9059.1] vel=[-1.11, 0.27, -8.27] tr=147 fuel=48.3kg dam=0.0J | NearThr: rel=[46.1, 41.9, -83.6] vR=[-1.45, -0.44, 1.26] R=7.7m tca=9.2s miss=55.8m rsafe=14.2m areq=-0.979 n=6
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: [GNC t=118.9s ZEM_-X] Dist=480.5m Spd=8.34 zem=42.8m tilt=14.5deg w=0.005 loc=[-749.3, 127.5, -9060.2] vel=[-1.11, 0.27, -8.26] tr=144 fuel=48.4kg dam=0.0J | NearThr: rel=[46.0, 41.8, -82.3] vR=[-1.45, -0.44, 1.26] R=7.7m tca=9.1s miss=55.8m rsafe=14.2m areq=-1.011 n=6
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 480.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.4kg | Coast: False
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 478.9m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.6kg | Coast: False
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 477.3m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.7kg | Coast: False
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 475.8m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: False
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: [GNC t=119.5s COAST] Dist=475.6m Spd=8.31 zem=36.5m tilt=14.6deg w=0.004 loc=[-750.0, 127.6, -9065.1] vel=[-1.21, 0.21, -8.22] tr=143 fuel=48.9kg dam=0.0J | NearThr: rel=[45.9, 41.4, -76.7] vR=[-1.45, -0.44, 1.27] R=7.7m tca=8.5s miss=56.7m rsafe=14.2m areq=-1.188 n=6
+2026-11-21T01:48:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 474.2m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 472.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 471.0m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 469.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 467.9m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 466.4m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 464.6m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 463.1m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 461.6m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 460.0m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:21 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 458.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 456.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 455.2m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 453.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 452.2m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 450.8m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:22 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 448.9m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 447.4m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 445.9m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 444.4m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 442.8m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:23 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 441.2m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 439.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 438.1m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 436.6m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 435.0m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: [GNC t=124.6s COAST] Dist=433.5m Spd=8.26 zem=35.5m tilt=15.4deg w=0.004 loc=[-756.2, 128.6, -9106.9] vel=[-1.21, 0.2, -8.17] tr=131 fuel=48.9kg dam=0.0J | NearThr: rel=[46.2, 39.5, -25.4] vR=[-1.6, -0.58, 1.68] R=7.7m tca=3.1s miss=58.5m rsafe=13.5m areq=-9.610 n=7
+2026-11-21T01:48:24 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 433.5m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 431.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 430.2m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 428.7m | Spd: 8.3m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 427.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 425.7m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:25 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 424.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 422.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 420.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 419.3m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 417.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:26 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 416.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 414.7m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 413.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 411.6m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 410.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:27 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 408.8m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 407.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 405.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 404.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 402.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 401.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:28 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 399.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 398.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 396.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 394.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 393.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:29 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 391.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 390.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 388.8m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: [GNC t=130.2s COAST] Dist=387.4m Spd=8.20 zem=35.9m tilt=16.2deg w=0.004 loc=[-762.9, 129.7, -9152.7] vel=[-1.19, 0.2, -8.11] tr=109 fuel=48.9kg dam=0.0J | NearThr: rel=[-263.3, -41.0, -29.0] vR=[-0.86, -0.47, 0.88] R=3.6m tca=3.9s miss=265.6m rsafe=9.7m areq=-32.975 n=5
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 387.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 385.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:30 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 384.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 382.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 381.2m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 379.8m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 378.3m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 376.8m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:31 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 375.3m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 373.7m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 372.3m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 370.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 369.4m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:32 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 367.9m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 366.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 365.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 363.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 362.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 360.5m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:33 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 359.2m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 357.6m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 356.0m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 354.6m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 353.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:34 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 351.6m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 350.1m | Spd: 8.2m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 348.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 347.1m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 345.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 344.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: [GNC t=135.7s COAST] Dist=342.8m Spd=8.14 zem=36.3m tilt=16.9deg w=0.004 loc=[-769.4, 130.8, -9197.0] vel=[-1.18, 0.19, -8.05] tr=94 fuel=48.9kg dam=0.0J
+2026-11-21T01:48:35 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 342.8m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 341.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 339.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 338.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 336.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:36 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 335.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 333.8m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 332.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 330.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 329.3m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 327.9m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:37 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 326.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 324.9m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 323.4m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 321.9m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 320.4m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:38 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 319.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 317.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 316.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 314.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 313.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 311.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:39 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 310.1m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 308.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 307.1m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 305.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 304.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:40 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 302.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 301.3m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 300.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: [GNC t=141.2s COAST] Dist=298.3m Spd=8.09 zem=36.5m tilt=17.6deg w=0.004 loc=[-775.8, 131.8, -9241.3] vel=[-1.16, 0.19, -8.0] tr=79 fuel=48.9kg dam=0.0J
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 298.3m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 296.8m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:41 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 295.4m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 293.9m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: Sim still running...
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 292.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 290.9m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 289.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 288.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:42 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 286.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 285.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 283.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 282.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 280.7m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:43 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 279.2m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 277.8m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 276.4m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 275.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 273.5m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 272.0m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:44 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 270.6m | Spd: 8.1m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 269.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 267.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 266.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 264.5m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:45 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 263.1m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 261.7m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 260.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 258.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 257.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 255.7m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: [GNC t=146.7s COAST] Dist=254.3m Spd=8.03 zem=36.7m tilt=18.1deg w=0.004 loc=[-782.1, 132.8, -9285.2] vel=[-1.14, 0.18, -7.95] tr=62 fuel=48.9kg dam=0.0J
+2026-11-21T01:48:46 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 254.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 252.9m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 251.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 249.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 248.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:47 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 247.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 245.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 244.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 242.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 241.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 239.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:48 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 238.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 237.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 235.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 234.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 232.7m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:49 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 231.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 229.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 228.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 227.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 225.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 224.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:50 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 222.6m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 221.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 219.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 218.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 216.8m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:51 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 215.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 214.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 212.5m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: [GNC t=152.2s COAST] Dist=211.2m Spd=7.98 zem=36.8m tilt=18.5deg w=0.004 loc=[-788.3, 133.8, -9328.5] vel=[-1.13, 0.18, -7.89] tr=47 fuel=48.9kg dam=0.0J
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 211.2m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 209.5m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:52 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 208.1m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 206.7m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 205.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 203.9m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 202.4m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 201.0m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:53 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 199.5m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 198.1m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 196.7m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 195.3m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 193.9m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:54 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 192.5m | Spd: 8.0m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 191.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 189.6m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 188.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 186.9m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 185.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:55 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 184.0m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 182.6m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 181.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 179.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 178.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:56 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 176.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 175.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 174.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 172.7m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 171.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 169.9m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: [GNC t=157.7s COAST] Dist=168.5m Spd=7.92 zem=36.7m tilt=18.8deg w=0.004 loc=[-794.4, 134.8, -9371.7] vel=[-1.11, 0.18, -7.84] tr=31 fuel=48.9kg dam=0.0J
+2026-11-21T01:48:57 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 168.5m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 167.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 165.7m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 164.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 162.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:58 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 161.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 160.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 158.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 157.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 156.0m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 154.5m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:48:59 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 153.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 151.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 150.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 149.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 147.7m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:00 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 146.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 144.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 143.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 142.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 140.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 139.2m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:01 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 137.9m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 136.5m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 135.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 133.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 132.4m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:02 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 131.0m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 129.6m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 128.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: [GNC t=163.1s COAST] Dist=126.9m Spd=7.87 zem=36.1m tilt=19.1deg w=0.004 loc=[-800.4, 135.8, -9414.2] vel=[-1.09, 0.17, -7.79] tr=21 fuel=48.9kg dam=0.0J
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 126.9m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 125.5m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 124.1m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:03 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 122.7m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 121.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 120.0m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 118.8m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 117.3m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:04 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 115.9m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 114.6m | Spd: 7.9m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 113.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 111.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 110.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 109.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:05 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 107.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 106.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 105.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 103.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 102.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:06 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 101.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 99.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 98.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 97.3m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 96.0m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 94.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:07 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 93.3m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 92.0m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 90.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 89.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 88.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: [GNC t=168.6s COAST] Dist=86.8m Spd=7.81 zem=34.1m tilt=21.1deg w=0.004 loc=[-806.3, 136.7, -9456.9] vel=[-1.08, 0.17, -7.74] tr=12 fuel=48.9kg dam=0.0J
+2026-11-21T01:49:08 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 86.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 85.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 84.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 82.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 81.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 80.4m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:09 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 79.0m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 77.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 76.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 75.4m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 74.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:10 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 72.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 71.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 70.4m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 69.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 68.1m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 66.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:11 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 65.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 64.6m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 63.5m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 62.3m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 61.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:12 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 60.2m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 58.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 57.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 56.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 55.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:13 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 54.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 53.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 52.7m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: [GNC t=174.1s COAST] Dist=51.8m Spd=7.76 zem=25.8m tilt=33.9deg w=0.004 loc=[-812.1, 137.6, -9499.3] vel=[-1.06, 0.17, -7.68] tr=0 fuel=48.9kg dam=0.0J
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 51.8m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 50.9m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 50.0m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:14 [WARN]----[PySys_Controller]: OnScreenAlert: Total fuel used    = 48.94 kg
+2026-11-21T01:49:14 [WARN]----[PySys_Controller]: OnScreenAlert: Successfully escaped Phobos with a score of 53.6; congratulations!
+2026-11-21T01:49:14 [WARN]----[PySys_Controller]: OnScreenAlert: Sim elapsed time   = 174.4 s
+2026-11-21T01:49:14 [WARN]----[PySys_Controller]: OnScreenAlert: Total damage taken = 0.0 J
+2026-11-21T01:49:14 [WARN]----[PySys_Controller]: OnScreenAlert: Distance to ship   = 49.72 m
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: [GNC t=174.6s WIN] Dist=49.2m Spd=7.75 zem=0.0m tilt=36.7deg w=0.004 loc=[-812.7, 137.7, -9503.3] vel=[-1.06, 0.17, -7.68] tr=0 fuel=48.9kg dam=0.0J
+2026-11-21T01:49:14 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 49.1m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 48.1m | Spd: 7.8m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 47.2m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 46.4m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 45.7m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:15 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 44.9m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 44.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 43.5m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 42.8m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 42.2m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 41.7m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:16 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 41.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 40.6m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 40.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 39.7m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 39.4m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 39.0m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:17 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.7m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.5m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.3m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.2m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:18 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.1m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.3m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.4m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: [GNC t=179.5s WIN] Dist=38.6m Spd=7.71 zem=0.0m tilt=80.0deg w=0.004 loc=[-817.8, 138.5, -9540.7] vel=[-1.05, 0.16, -7.63] tr=0 fuel=48.9kg dam=0.0J
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.6m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:19 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 38.9m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:20 [INFO]----[PySys_Controller]: OnScreenLogMessage: Dist: 39.2m | Spd: 7.7m/s | Dam: 0.0J | Fuel: 48.9kg | Coast: True
+2026-11-21T01:49:20 [INFO]----[PySys_Controller]: Received ICrashed order from endpoint at NetworkID 1.
+2026-11-21T01:49:20 [INFO]-[PySys_Controller->Server @NID:1]: Disconnected.

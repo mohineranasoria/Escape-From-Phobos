@@ -1,0 +1,9 @@
+# Team Stella — STU4 Escape from Phobos Controller Dependencies
+#
+# No external third-party pip packages are required.
+# Controller.py runs out of the box inside SpaceTeamsPRO's bundled Python 3.12 environment
+# using only:
+#   - Python standard library (os, sys, time, datetime, traceback, copy, collections)
+#   - spaceteams (provided by SpaceTeamsPRO v0.55.0+)
+#   - numpy (pre-installed in SpaceTeamsPRO's bundled Python environment)
+numpy

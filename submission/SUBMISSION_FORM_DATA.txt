@@ -1,0 +1,66 @@
+================================================================================
+SPACE TEAMS UNIVERSITY #4: ESCAPE FROM PHOBOS -- FINAL SUBMISSION
+================================================================================
+Official Final Submission Form: https://forms.gle/19HRACS55Js82K8d9
+Official Competition Rules:     https://github.com/SimDynamX/SpaceTeamsPRO/discussions/218
+Official Leaderboard:           https://github.com/SimDynamX/SpaceTeamsPRO/discussions/247
+
+--------------------------------------------------------------------------------
+1. TEAM & IDENTIFICATION DETAILS
+--------------------------------------------------------------------------------
+Team Name:            Team Stella
+Repository URL:       https://github.com/mohineranasoria/Escape-From-Phobos
+GitHub Branch / Tag:  main (tag: v2.0-final-submission)
+Platform Version:     SpaceTeamsPRO v0.55.0 (Release, Win64)
+Sim Repo / Version:   SimDynamX/STU4-Sim @ 0d753a2 (Backend Sim Version: 2026/11/11, seed=8193)
+Sim Modifications:    None (100% unmodified stock COMPETITION_SIM.simconf, MD5: 832D2F6FD19615D597DA835A05CC33F4)
+Controller Version:   V10 Ultra-Stable High-Score Lyapunov Multi-Vertex GNC
+Controller MD5:       821E13B91ECDA895FA5E2EE7AD8EB80C
+Controller SHA256:    50AF0954E6375A3B1AB4DC081625181EF836AB3BD1A31A9D50F01DD50930D211
+External Pip Deps:    None (uses only SpaceTeamsPRO built-in spaceteams, numpy, and Python stdlib)
+
+--------------------------------------------------------------------------------
+2. TWO CONSECUTIVE FLIGHT RUNS (SINGLE CONTINUOUS VIDEO RECORDING)
+--------------------------------------------------------------------------------
+Combined Video File: SpaceCRAFT 2026.11.21 - 07.46.11.05.mp4 (~721 MB, hosted via Google Drive link)
+
+* RUN 1 (First Consecutive Run in Video)
+  - Final Score:            53.6
+  - Sim Elapsed Time (SET): 174.4 s
+  - Final Distance to Ship: 49.72 m (Within Keep-Out <= 50.0 m)
+  - Total Fuel Used:        48.94 kg
+  - Total Damage Taken:     0.0 J (Clean escape, zero collisions)
+  - Backend Sim Version:    2026/11/11
+  - Run UUID:               45fe7e9f-40de-d624-aded-91910b230233
+  - Log Directory:          submission/logs/261121_014614_COMPETITION_SIM__45f/
+
+* RUN 2 (Second Consecutive Run in Video)
+  - Final Score:            55.1
+  - Sim Elapsed Time (SET): 174.44 s
+  - Final Distance to Ship: 49.95 m (Within Keep-Out <= 50.0 m)
+  - Total Fuel Used:        47.79 kg
+  - Total Damage Taken:     0.0 J (Clean escape, zero collisions)
+  - Backend Sim Version:    2026/11/11
+  - Run UUID:               a011b6e1-45c6-926b-4002-52a38f155f8e
+  - Log Directory:          submission/logs/261121_014924_COMPETITION_SIM__a01/
+
+* COMBINED / TWO-RUN AVERAGE PERFORMANCE (CLAIMED SUBMISSION VALUES)
+  - Average Score:            54.35  (53.6 & 55.1; spread: 1.5 pts)
+  - Average Sim Elapsed Time: 174.42 s  (174.4 s & 174.44 s)
+  - Average Fuel Used:        48.365 kg (48.37 kg; 48.94 kg & 47.79 kg)
+  - Average / Total Damage:   0.0 J  (Zero collisions across both consecutive runs)
+  - Mission Outcome:          Both consecutive runs escaped Phobos cleanly into AsteroidCycler keep-out
+
+--------------------------------------------------------------------------------
+3. REPOSITORY SUBMISSION INVENTORY
+--------------------------------------------------------------------------------
+- Controller.py                                              (V10 GNC controller — verified MD5 above)
+- BasicController.py                                         (Stock STU4-Solution reference controller)
+- UserAPI.py                                                 (Stock STU4-Solution API utilities)
+- requirements.txt                                           (Dependency declaration — numpy/stdlib only)
+- README.md                                                  (Project overview, benchmarks & run guide)
+- docs/SOLUTION_WRITEUP.md                                   (Detailed technical write-up for final submission)
+- submission/SUBMISSION_FORM_DATA.txt                        (This telemetry & claims summary)
+- submission/logs/261121_014614_COMPETITION_SIM__45f/        (Full unmodified Run 1 STPro log folder)
+- submission/logs/261121_014924_COMPETITION_SIM__a01/        (Full unmodified Run 2 STPro log folder)
+================================================================================
